@@ -970,113 +970,296 @@ ul {
   gap: 0.5rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE DESIGN — COMPREHENSIVE BREAKPOINTS
+   - Mobile:  <= 480px
+   - Mobile L: 481px - 768px
+   - Tablet:  769px - 1024px
+   - Laptop:  1025px - 1280px
+   - Desktop: >= 1281px
+═══════════════════════════════════════════════════════ */
+
+/* ── TABLET (max 1024px) ── */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Header */
   .hamburger {
     display: block;
   }
-
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: 280px;
     height: 100vh;
-    background: var(--bg-color);
+    background: #fff;
     box-shadow: var(--shadow-lg);
-    padding: 6rem 2rem;
-    transition: right 0.3s ease-in-out;
+    padding: 5rem 2rem 2rem;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 1px solid var(--border-color);
+    z-index: 1050;
   }
-
   .nav.open {
     right: 0;
   }
-
   .nav-links {
     flex-direction: column;
     gap: 1.5rem;
   }
-
-  .hamburger.open .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+  .nav-links a {
+    font-size: 1rem;
+    color: var(--text-primary) !important;
+    mix-blend-mode: normal !important;
   }
 
-  .hamburger.open .bar:nth-child(2) {
-    opacity: 0;
+  /* Hero */
+  .hero-normal {
+    padding: 5rem 5% 4rem;
+  }
+  .hero-container {
+    gap: 3rem;
+  }
+  .hero-image-wrapper {
+    max-width: 380px;
   }
 
-  .hamburger.open .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+  /* Skills grid */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .cyber-layer h1, .dev-layer h1 {
-    font-size: 2.5rem;
+  /* Projects grid */
+  .proj-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .split-text-container {
+
+  /* Achievements */
+  .achievements-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 1.5rem;
+  }
+}
+
+/* ── MOBILE LARGE + TABLET SMALL (max 768px) ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Hero — stack vertically */
+  .hero-normal {
+    padding: 6rem 1.25rem 3rem;
+    min-height: 100svh;
+  }
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .hero-content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-normal h1 {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    margin: 0 auto 2rem;
+    max-width: 480px;
+  }
+  .hero-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .hero-visual {
+    width: 100%;
+    flex: unset;
+  }
+  .hero-image-wrapper {
+    max-width: 260px;
+    margin: 0 auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+  }
+  .scroll-hint-normal {
+    display: none;
+  }
+
+  /* About */
+  .about-text {
+    font-size: 1rem;
+  }
+  .about-stats {
+    gap: 1.5rem;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Projects */
+  .proj-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Modal */
+  .modal-panel {
+    width: 100%;
+    height: 95vh;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  }
+  .modal-gallery-img {
+    height: 200px;
+  }
+  .modal-body {
+    padding: 1.5rem;
+  }
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  /* Achievements */
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 1rem;
+  }
+  .timeline-content {
+    padding: 1.25rem;
+  }
+  .timeline-role {
+    font-size: 1.1rem;
+  }
+  .timeline-dot {
+    left: -1.85rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 3.5rem 1.25rem 2rem;
+  }
+  .footer-title {
+    font-size: 2rem;
+  }
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .contact-links .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ── MOBILE SMALL (max 480px) ── */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* Hero */
+  .hero-normal {
+    padding: 5.5rem 1rem 2.5rem;
+  }
+  .hero-normal h1 {
+    font-size: clamp(1.75rem, 8vw, 2.2rem);
+  }
+  .hero-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .hero-desc {
+    font-size: 0.9rem;
+  }
+  .btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  .hero-image-wrapper {
+    max-width: 200px;
+  }
+
+  /* About stats */
+  .about-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .stat-item h3 {
+    font-size: 1.75rem;
+  }
+
+  /* Achievements */
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Footer */
+  .footer-title {
+    font-size: 1.6rem;
+  }
+  .footer-desc {
+    font-size: 0.9rem;
+  }
+}
+
+/* ── VERY SMALL (max 360px) ── */
+@media (max-width: 360px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn {
     width: 100%;
     text-align: center;
   }
-
-  .split-content-wrapper {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 100px;
-  }
-  
-  .right-content {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .split-image-container {
-    width: 250px;
-    height: 45vh;
-    left: 50%;
-  }
-  
-  .about-stats {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .achievements-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-normal h1 {
+    font-size: 1.6rem;
   }
 }
 
-/* Nav sidebar mobile */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  .nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 260px;
-    height: 100vh;
-    background: #0a0f1a;
-    padding: 6rem 2rem 2rem;
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    border-left: 1px solid rgba(255,255,255,0.1);
-    z-index: 1000;
-  }
-
-  .nav.open {
-    right: 0;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 1.75rem;
-  }
-
-  .nav-links a {
-    font-size: 1.1rem;
-    color: #fff !important;
-    mix-blend-mode: normal !important;
-  }
-}
