@@ -889,8 +889,14 @@ ul {
   margin-bottom: 0.25rem;
 }
 
-.cert-date {
+.cert-desc {
   font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.cert-date {
+  font-size: 0.8rem;
   color: var(--text-tertiary);
   margin-bottom: 1.25rem;
 }
@@ -965,6 +971,12 @@ ul {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.cert-modal-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   margin-bottom: 0.25rem;
 }
 

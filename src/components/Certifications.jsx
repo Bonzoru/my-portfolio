@@ -5,8 +5,8 @@ const certificationsData = [
   {
     id: 1,
     issuerTitle: 'Cisco',
+    description: 'Cisco Networking Academy',
     date: '2026',
-    logo: '🛡️',
     items: [
       {
         id: 'cisco-1',
@@ -19,8 +19,8 @@ const certificationsData = [
   {
     id: 2,
     issuerTitle: 'Komdigi',
+    description: 'Kementerian Komunikasi dan Digital',
     date: '2026',
-    logo: '🤖',
     items: [
       {
         id: 'komdigi-1',
@@ -33,8 +33,8 @@ const certificationsData = [
   {
     id: 3,
     issuerTitle: 'Anthropic',
+    description: 'Anthropic Powered by Claude',
     date: '2026',
-    logo: '🧠',
     items: [
       {
         id: 'anthropic-1',
@@ -89,12 +89,10 @@ const Certifications = () => {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               whileHover={{ y: -5 }}
             >
-              <div className="cert-logo-container">
-                <span className="cert-logo">{cert.logo}</span>
-              </div>
               <div className="cert-info">
                 <div>
                   <h3 className="cert-title">{cert.issuerTitle}</h3>
+                  <p className="cert-desc">{cert.description}</p>
                   <p className="cert-date">{cert.date}</p>
                 </div>
                 <span className="btn-view-cert">
@@ -131,9 +129,9 @@ const Certifications = () => {
               </button>
 
               <div className="cert-modal-header">
-                <div className="cert-modal-icon">{selectedCert.logo}</div>
                 <div>
                   <h3 className="cert-modal-title">{selectedCert.issuerTitle}</h3>
+                  <p className="cert-modal-desc">{selectedCert.description}</p>
                   <p className="cert-modal-date">{selectedCert.date}</p>
                 </div>
               </div>

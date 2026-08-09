@@ -24,7 +24,7 @@ const Experience = () => {
     {
       role: 'Crypto Trader & Market Analyst',
       company: 'Independent',
-      period: '2022 - 2025',
+      period: '2022 - Present',
       desc: 'Actively traded on DEX/CEX platforms, analyzed markets using technical, macroeconomic, and sentiment analysis for AI-based trading bots.'
     }
   ];
