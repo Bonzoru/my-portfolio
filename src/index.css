@@ -111,10 +111,9 @@ ul {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.05em;
-  color: #fff;
-  mix-blend-mode: difference; /* Magic trick: inverts automatically over dark/light */
+  color: var(--text-primary);
   position: relative;
-  z-index: 1100;
+  z-index: 1001;
 }
 
 .logo span {
@@ -134,10 +133,9 @@ ul {
 .nav-links a {
   font-weight: 500;
   font-size: 0.9rem;
-  color: #fff;
-  mix-blend-mode: difference;
+  color: var(--text-primary);
   position: relative;
-  z-index: 1100;
+  z-index: 1001;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -154,10 +152,11 @@ ul {
 .hamburger {
   display: none;
   cursor: pointer;
-  z-index: 1101;
+  z-index: 1200;
   background: none;
   border: none;
   padding: 4px;
+  position: relative;
 }
 
 .bar {
@@ -166,8 +165,7 @@ ul {
   height: 2px;
   margin: 5px auto;
   transition: all 0.3s ease-in-out;
-  background-color: #fff;
-  mix-blend-mode: difference;
+  background-color: var(--text-primary);
 }
 
 .header.scrolled .bar {
@@ -179,6 +177,11 @@ ul {
 .hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open .bar:nth-child(2) { opacity: 0; }
 .hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Nav overlay backdrop — hidden by default, shown on mobile */
+.nav-overlay {
+  display: none;
+}
 
 /* Buttons */
 .btn {
@@ -1217,6 +1220,17 @@ ul {
   .hamburger {
     display: block;
   }
+
+  /* Overlay backdrop saat nav terbuka */
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+    backdrop-filter: blur(2px);
+  }
+
   .nav {
     position: fixed;
     top: 0;
@@ -1228,7 +1242,7 @@ ul {
     padding: 5rem 2rem 2rem;
     transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 1px solid var(--border-color);
-    z-index: 1050;
+    z-index: 1100;
   }
   .nav.open {
     right: 0;
