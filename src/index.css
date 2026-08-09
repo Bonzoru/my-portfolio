@@ -878,19 +878,14 @@ ul {
 .cert-info {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .cert-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.25rem;
-}
-
-.cert-issuer {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
@@ -905,6 +900,7 @@ ul {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent-color);
+  margin-top: auto;
 }
 
 /* Cert Modal */
@@ -972,12 +968,6 @@ ul {
   margin-bottom: 0.25rem;
 }
 
-.cert-modal-issuer {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
 .cert-modal-date {
   font-size: 0.85rem;
   color: var(--text-tertiary);
@@ -988,14 +978,52 @@ ul {
   padding: 2.5rem;
 }
 
-.cert-link-preview {
-  text-align: center;
-  padding: 2rem 0;
+.cert-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.cert-link-preview p {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+.cert-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.cert-item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btn-cert-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bg-color);
+  background: var(--accent-color);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-cert-action:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .cert-image-preview {

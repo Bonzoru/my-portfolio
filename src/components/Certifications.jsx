@@ -4,35 +4,56 @@ import { motion, AnimatePresence } from 'framer-motion';
 const certificationsData = [
   {
     id: 1,
-    title: 'Endpoint Security',
-    issuer: 'Cisco Networking Academy',
-    date: 'August 2026',
-    type: 'link',
-    credentialUrl: 'https://www.netacad.com/certificates/issuanceId=e3d16ab7-3e5b-47dd-b3b7-fca5046bf828',
+    issuerTitle: 'Cisco',
+    date: '2026',
     logo: '🛡️',
+    items: [
+      {
+        id: 'cisco-1',
+        name: 'Endpoint Security',
+        type: 'link',
+        url: 'https://www.netacad.com/certificates/issuanceId=e3d16ab7-3e5b-47dd-b3b7-fca5046bf828'
+      }
+    ]
   },
   {
     id: 2,
-    title: 'AI Engineer For Milenial (Micro Skill)',
-    issuer: 'Pusat Pengembangan Literasi Digital (Komdigi)',
-    date: 'August 2026',
-    type: 'link',
-    credentialUrl: '#', // Ganti dengan link hasil scan QR code
+    issuerTitle: 'Komdigi',
+    date: '2026',
     logo: '🤖',
+    items: [
+      {
+        id: 'komdigi-1',
+        name: 'AI Engineer For Milenial (Micro Skill)',
+        type: 'link',
+        url: '#'
+      }
+    ]
   },
   {
     id: 3,
-    title: 'Introduction to subagents',
-    issuer: 'Anthropic',
-    date: 'August 2026',
-    type: 'image',
-    imageSrc: '/anthropic-cert.jpg', // Pastikan gambar ini ada di folder public
+    issuerTitle: 'Anthropic',
+    date: '2026',
     logo: '🧠',
+    items: [
+      {
+        id: 'anthropic-1',
+        name: 'Introduction to subagents',
+        type: 'image',
+        imageSrc: '/anthropic-cert.jpg'
+      }
+    ]
   },
 ];
 
 const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
+  const [activeImage, setActiveImage] = useState(null);
+
+  const closeModal = () => {
+    setSelectedCert(null);
+    setActiveImage(null);
+  };
 
   return (
     <section className="section certifications" id="certifications">
@@ -53,7 +74,7 @@ const Certifications = () => {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          Licenses & Certifications
+          Certifications
         </motion.h2>
 
         <div className="certs-grid">
@@ -72,11 +93,12 @@ const Certifications = () => {
                 <span className="cert-logo">{cert.logo}</span>
               </div>
               <div className="cert-info">
-                <h3 className="cert-title">{cert.title}</h3>
-                <p className="cert-issuer">{cert.issuer}</p>
-                <p className="cert-date">Issued {cert.date}</p>
+                <div>
+                  <h3 className="cert-title">{cert.issuerTitle}</h3>
+                  <p className="cert-date">{cert.date}</p>
+                </div>
                 <span className="btn-view-cert">
-                  {cert.type === 'link' ? 'View Details ↗' : 'View Certificate 👁️'}
+                  View Details ↗
                 </span>
               </div>
             </motion.div>
@@ -92,7 +114,7 @@ const Certifications = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedCert(null)}
+            onClick={closeModal}
           >
             <motion.div
               className="cert-modal-panel"
@@ -103,7 +125,7 @@ const Certifications = () => {
             >
               <button
                 className="cert-modal-close"
-                onClick={() => setSelectedCert(null)}
+                onClick={closeModal}
               >
                 ✕
               </button>
@@ -111,31 +133,46 @@ const Certifications = () => {
               <div className="cert-modal-header">
                 <div className="cert-modal-icon">{selectedCert.logo}</div>
                 <div>
-                  <h3 className="cert-modal-title">{selectedCert.title}</h3>
-                  <p className="cert-modal-issuer">{selectedCert.issuer}</p>
-                  <p className="cert-modal-date">Issued {selectedCert.date}</p>
+                  <h3 className="cert-modal-title">{selectedCert.issuerTitle}</h3>
+                  <p className="cert-modal-date">{selectedCert.date}</p>
                 </div>
               </div>
 
               <div className="cert-modal-body">
-                {selectedCert.type === 'link' ? (
-                  <div className="cert-link-preview">
-                    <p>This credential can be verified online through the issuer's official portal.</p>
-                    <a
-                      href={selectedCert.credentialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                    >
-                      Verify Credential ↗
-                    </a>
-                  </div>
-                ) : (
-                  <div className="cert-image-preview">
-                    {/* Menggunakan onContextMenu untuk mencegah klik kanan (anti-save) */}
+                <div className="cert-items-list">
+                  {selectedCert.items.map((item) => (
+                    <div key={item.id} className="cert-item-row">
+                      <span className="cert-item-name">{item.name}</span>
+                      {item.type === 'link' ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-cert-action"
+                        >
+                          Verify ↗
+                        </a>
+                      ) : (
+                        <button
+                          className="btn-cert-action"
+                          onClick={() => setActiveImage(activeImage === item.imageSrc ? null : item.imageSrc)}
+                        >
+                          View Certificate
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {activeImage && (
+                  <motion.div 
+                    className="cert-image-preview mt-4"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                  >
                     <img
-                      src={selectedCert.imageSrc}
-                      alt={`${selectedCert.title} Certificate`}
+                      src={activeImage}
+                      alt="Certificate Preview"
                       className="protected-cert-img"
                       onContextMenu={(e) => e.preventDefault()}
                       onDragStart={(e) => e.preventDefault()}
@@ -145,9 +182,9 @@ const Certifications = () => {
                       }}
                     />
                     <div className="image-fallback" style={{ display: 'none', height: '200px', alignItems: 'center', justifyContent: 'center', background: '#f3f4f6', borderRadius: '0.5rem' }}>
-                      <span>Image not found. Please add {selectedCert.imageSrc} to public folder.</span>
+                      <span>Image not found. Please add to public folder.</span>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </motion.div>
