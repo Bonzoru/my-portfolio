@@ -178,11 +178,6 @@ ul {
 .hamburger.open .bar:nth-child(2) { opacity: 0; }
 .hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Nav overlay backdrop — hidden by default, shown on mobile */
-.nav-overlay {
-  display: none;
-}
-
 /* Buttons */
 .btn {
   display: inline-block;
@@ -1219,15 +1214,6 @@ ul {
   /* Header */
   .hamburger {
     display: block;
-  }
-
-  /* Overlay backdrop saat nav terbuka */
-  .nav-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 1040;
   }
 
   .nav {

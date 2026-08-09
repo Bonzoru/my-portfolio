@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,14 +14,25 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Tutup menu saat scroll
+  // Tutup menu saat klik di luar area nav
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
+    const handleClickOutside = (e) => {
+      if (
+        menuOpen &&
+        navRef.current &&
+        !navRef.current.contains(e.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(e.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, [menuOpen]);
 
   const navLinks = [
@@ -31,44 +44,52 @@ const Header = () => {
     { href: '#contact', label: 'Contact' },
   ];
 
+  const handleNavClick = (href) => {
+    setMenuOpen(false);
+    // Beri jeda kecil agar menu menutup dulu sebelum scroll
+    setTimeout(() => {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
+  };
+
   return (
-    <>
-      {/* Overlay backdrop saat menu mobile terbuka */}
-      {menuOpen && (
-        <div
-          className="nav-overlay"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container header-content">
+        <a href="#" className="logo">SURYA<span> AJI ANDRIANTORO</span></a>
 
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div className="container header-content">
-          <a href="#" className="logo">SURYA<span> AJI ANDRIANTORO</span></a>
+        <nav ref={navRef} className={`nav ${menuOpen ? 'open' : ''}`}>
+          <ul className="nav-links">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          <nav className={`nav ${menuOpen ? 'open' : ''}`}>
-            <ul className="nav-links">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} onClick={() => setMenuOpen(false)}>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <button
-            className={`hamburger ${menuOpen ? 'open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </button>
-        </div>
-      </header>
-    </>
+        <button
+          ref={hamburgerRef}
+          className={`hamburger ${menuOpen ? 'open' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+      </div>
+    </header>
   );
 };
 
