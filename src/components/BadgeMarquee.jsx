@@ -19,6 +19,14 @@ import useReveal from '../hooks/useReveal';
  * its official Credly page for verification. Deliberately not the embed.js
  * widget: that renders one iframe per badge, which cannot be marquee'd, paused,
  * or kept off the main thread.
+ *
+ * Loading strategy: `loading="lazy"` alone is broken here. The track moves by
+ * `transform`, and the browser's lazy-load heuristic only reacts to real scroll
+ * position, not to transformed position, so badges parked outside the viewport
+ * horizontally never load even as the animation carries them into view.
+ * Measured in production: 10 of 22 images stayed at naturalWidth 0. So the
+ * images stay lazy until the marquee is revealed, then flip to eager, which
+ * keeps them off the initial page load without ever leaving a blank plate.
  */
 export default function BadgeMarquee() {
   const lap = [...ciscoBadges, ...ciscoBadges];
@@ -55,7 +63,7 @@ export default function BadgeMarquee() {
                     width="128"
                     height="128"
                     alt={dup ? '' : `${badge.name} badge, issued by Cisco`}
-                    loading="lazy"
+                    loading={shown ? 'eager' : 'lazy'}
                     decoding="async"
                   />
                 </span>
