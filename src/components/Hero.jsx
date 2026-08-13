@@ -1,81 +1,90 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'motion/react';
+import Icon from './Icon';
+import { profile } from '../data/site';
 
-const Hero = () => {
+const ease = [0.16, 1, 0.3, 1];
+
+/** Staggered entrance, hero only — the rest of the page uses <Reveal/>. */
+const rise = (delay) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, delay, ease },
+});
+
+export default function Hero() {
   return (
-    <section className="hero-normal" id="home">
-      <div className="hero-container">
-        <div className="hero-content">
-          <motion.div 
-            className="hero-badge"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Web Developer, Cybersecurity & AI
-          </motion.div>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Building & Securing<br />
-            <span className="accent-gradient">The Digital World</span>
-          </motion.h1>
-          
-          <motion.p 
-            className="hero-desc"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Crafting clean, interactive applications and protecting systems through offensive security and penetration testing.
-          </motion.p>
-          
-          <motion.div 
-            className="hero-actions"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <a href="#projects" className="btn btn-primary">View Projects</a>
-            <a href="#about" className="btn btn-secondary">More About Me</a>
-          </motion.div>
-        </div>
+    <section className="hero" id="top">
+      <div className="shell hero__inner">
+        <div>
+          <m.p className="hero__status" {...rise(0)}>
+            <Icon name="mapPin" />
+            {profile.location}
+          </m.p>
 
-        <motion.div 
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="hero-image-wrapper">
-            <div className="image-fallback">
-              <span>SA</span>
+          <m.h1 className="hero__title" {...rise(0.06)}>
+            {profile.name.split(' ').slice(0, 2).join(' ')}
+            <br />
+            <em>{profile.name.split(' ').slice(2).join(' ')}</em>
+          </m.h1>
+
+          <m.p className="hero__lede" {...rise(0.12)}>
+            {profile.headline}
+          </m.p>
+
+          <m.div className="hero__actions" {...rise(0.18)}>
+            <a className="btn" href="#work">
+              View selected work
+              <Icon name="arrowRight" className="btn__icon" />
+            </a>
+            <a className="btn btn--ghost" href="#about">
+              More about me
+            </a>
+          </m.div>
+
+          <m.dl className="hero__meta" {...rise(0.24)}>
+            <div className="hero__meta-row">
+              <dt className="hero__meta-key">Focus</dt>
+              <dd className="hero__meta-val">
+                <span className="nowrap">Web development</span> ·{' '}
+                <span className="nowrap">Cybersecurity</span> ·{' '}
+                <span className="nowrap">AI engineering</span>
+              </dd>
             </div>
-            <img
-              src="/surya-dev.png"
-              alt="Surya"
-              className="hero-img-main"
-              onError={(e) => (e.target.style.display = 'none')}
-            />
-          </div>
-        </motion.div>
-      </div>
-
-      <motion.div 
-        className="scroll-hint-normal"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        <div className="scroll-mouse">
-          <div className="scroll-wheel"></div>
+            <div className="hero__meta-row">
+              <dt className="hero__meta-key">Studying</dt>
+              <dd className="hero__meta-val">
+                Informatics Engineering, Darmajaya Institute
+              </dd>
+            </div>
+            <div className="hero__meta-row">
+              <dt className="hero__meta-key">Email</dt>
+              <dd className="hero__meta-val">
+                <a className="hero__meta-link" href={`mailto:${profile.email}`}>
+                  {profile.email}
+                </a>
+              </dd>
+            </div>
+          </m.dl>
         </div>
-      </motion.div>
+
+        <m.div
+          className="hero__portrait"
+          initial={{ opacity: 0, scale: 0.985 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease }}
+        >
+          <img
+            src="/surya-dev-640.webp"
+            srcSet="/surya-dev-640.webp 640w, /surya-dev-1024.webp 1024w"
+            sizes="(min-width: 820px) 380px, 78vw"
+            width="640"
+            height="639"
+            alt={`Portrait of ${profile.name}`}
+            fetchPriority="high"
+            decoding="async"
+          />
+        </m.div>
+      </div>
     </section>
   );
-};
-
-export default Hero;
+}

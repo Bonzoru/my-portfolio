@@ -1,75 +1,41 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import Reveal from './Reveal';
+import { skillGroups } from '../data/site';
 
-const Skills = () => {
-  const skillsList = [
-    { category: 'Cybersecurity', items: ['Penetration Testing', 'Bug Hunting', 'OSINT'] },
-    { category: 'Web Development', items: ['React / Vite', 'HTML & CSS', 'JavaScript', 'Junior Web Developer (Cert)'] },
-    { category: 'AI & Data', items: ['AI Engineering & Prompting', 'Data Processing', 'Sentiment Analysis'] },
-    { category: 'Networking & Others', items: ['Junior Network Engineer (Cert)', 'Web3 & Blockchain', 'Problem Solving'] },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-  };
-
+export default function Skills() {
   return (
-    <section className="section skills bg-secondary" id="skills">
-      <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          My Expertise
-        </motion.h2>
-        
-        <motion.div 
-          className="skills-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {skillsList.map((skillGroup, index) => (
-            <motion.div 
-              className="skill-card" 
-              key={index} 
-              variants={itemVariants}
-              whileHover={{ 
-                y: -10, 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                borderColor: "var(--accent-color)"
-              }}
-            >
-              <h3 className="skill-category">{skillGroup.category}</h3>
-              <ul className="skill-list">
-                {skillGroup.items.map((item, idx) => (
-                  <li key={idx} className="skill-item">
-                    <span className="skill-dot"></span>
+    <section className="section section--tint" id="skills">
+      <div className="shell">
+        <div className="section-head section-head--split">
+          <Reveal as="p" className="eyebrow">
+            Capabilities
+          </Reveal>
+          <Reveal as="h2" className="section-head__title" delay={0.04}>
+            What I work with
+          </Reveal>
+          <Reveal as="p" className="section-head__lede" delay={0.08}>
+            Grouped by discipline rather than listed as logos, so the overlap
+            between security, web, and data work stays readable.
+          </Reveal>
+        </div>
+
+        <div className="skills__grid">
+          {skillGroups.map((group, i) => (
+            <Reveal className="skill-panel" key={group.id} delay={i * 0.06}>
+              <div className="skill-panel__head">
+                <h3 className="skill-panel__title">{group.title}</h3>
+                <p className="skill-panel__note">{group.note}</p>
+              </div>
+              <ul className="skill-panel__list">
+                {group.items.map((item) => (
+                  <li className="skill-chip" key={item}>
                     {item}
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

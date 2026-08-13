@@ -1,96 +1,173 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, m } from 'motion/react';
+import Icon from './Icon';
+import { navigation, profile } from '../data/site';
 
-const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navRef = useRef(null);
-  const hamburgerRef = useRef(null);
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const [stuck, setStuck] = useState(false);
+  const [active, setActive] = useState('');
+  const toggleRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setStuck(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Tutup menu saat klik di luar area nav
+  /* Track the section in view so the desktop nav reflects position. */
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        menuOpen &&
-        navRef.current &&
-        !navRef.current.contains(e.target) &&
-        hamburgerRef.current &&
-        !hamburgerRef.current.contains(e.target)
-      ) {
-        setMenuOpen(false);
-      }
+    const ids = navigation.map((n) => n.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  /* Lock scroll and restore focus while the mobile sheet is open. */
+  useEffect(() => {
+    if (!open) return;
+    const toggle = toggleRef.current;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpen(false);
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener('keydown', onKey);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+      toggle?.focus();
     };
-  }, [menuOpen]);
-
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#certifications', label: 'Certifications' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
-  const handleNavClick = (href) => {
-    setMenuOpen(false);
-    // Beri jeda kecil agar menu menutup dulu sebelum scroll
-    setTimeout(() => {
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 50);
-  };
+  }, [open]);
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container header-content">
-        <a href="#" className="logo">SURYA<span> AJI ANDRIANTORO</span></a>
+    <>
+      <header className="site-header" data-stuck={stuck}>
+        <div className="shell site-header__inner">
+          <a className="brand" href="#top">
+            <span className="brand__mark" aria-hidden="true">
+              {profile.initials}
+            </span>
+            <span className="brand__name">
+              Surya Aji <span>Andriantoro</span>
+            </span>
+          </a>
 
-        <nav ref={navRef} className={`nav ${menuOpen ? 'open' : ''}`}>
-          <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                >
-                  {link.label}
+          <nav className="nav" aria-label="Sections">
+            <ul className="nav__list">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <a
+                    className="nav__link"
+                    href={item.href}
+                    aria-current={active === item.href.slice(1) ? 'true' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <a className="btn btn--ghost header__cta" href={`mailto:${profile.email}`}>
+            Get in touch
+          </a>
+
+          <button
+            ref={toggleRef}
+            className="nav-toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen(true)}
+          >
+            <Icon name="menu" />
+            <span className="sr-only">Open menu</span>
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {open && (
+          <m.div
+            id="mobile-nav"
+            className="mobile-nav"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="shell mobile-nav__top">
+              <span className="brand">
+                <span className="brand__mark" aria-hidden="true">
+                  {profile.initials}
+                </span>
+                <span className="brand__name">Menu</span>
+              </span>
+              <button
+                className="nav-toggle"
+                type="button"
+                onClick={() => setOpen(false)}
+                autoFocus
+              >
+                <Icon name="close" />
+                <span className="sr-only">Close menu</span>
+              </button>
+            </div>
+
+            <div className="shell mobile-nav__body">
+              <ul className="mobile-nav__list">
+                {navigation.map((item, i) => (
+                  <li key={item.href}>
+                    <a
+                      className="mobile-nav__link"
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                      <span className="mobile-nav__index" aria-hidden="true">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mobile-nav__foot">
+                <a className="btn" href={`mailto:${profile.email}`} onClick={() => setOpen(false)}>
+                  <Icon name="mail" className="btn__icon" />
+                  Email me
                 </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <button
-          ref={hamburgerRef}
-          className={`hamburger ${menuOpen ? 'open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
-      </div>
-    </header>
+                <a
+                  className="btn btn--ghost"
+                  href={`tel:${profile.phoneHref}`}
+                  onClick={() => setOpen(false)}
+                >
+                  <Icon name="phone" className="btn__icon" />
+                  {profile.phone}
+                </a>
+              </div>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
+    </>
   );
-};
-
-export default Header;
+}

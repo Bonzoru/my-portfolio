@@ -1,242 +1,135 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Reveal from './Reveal';
+import Icon from './Icon';
+import { projects } from '../data/site';
 
-const projectsData = [
-  {
-    id: 1,
-    title: 'Crypto Market Information Aggregator',
-    category: 'Telegram Bot · Python',
-    tagline: 'Real-time crypto intelligence delivered to your Telegram.',
-    description:
-      'An automated Telegram bot that aggregates and forwards real-time information from various channels delivering on-chain data, macroeconomic updates, and large-scale whale movements into a single unified feed for traders.',
-    images: ['/telegram-bot-1.jpg', '/telegram-bot-2.png'],
-    tags: ['Python', 'Telegram API', 'Web3', 'Data Analysis', 'Automation'],
-    highlights: [
-      'Aggregates 10+ data sources in real-time',
-      'Tracks whale wallet movements on-chain',
-      'Macro economic signal parsing',
-      'Deployed for a live trading community',
-    ],
-    year: '2024 Present',
+/**
+ * Responsive sources for the screenshots that were already in /public.
+ * Each entry maps the original file to the generated webp variants.
+ */
+const media = {
+  '/xyro-1.png': {
+    src: '/xyro-1-1024.webp',
+    srcSet: '/xyro-1-640.webp 640w, /xyro-1-1024.webp 1024w',
+    width: 1024,
+    height: 486,
   },
-  {
-    id: 2,
-    title: 'Xyro Terminal',
-    category: 'Web-based Crypto Terminal',
-    tagline: 'The ultimate on-chain data and analytics platform for crypto communities.',
-    description:
-      'A web-based terminal built to help crypto community members analyze vast amounts of on-chain data in a single unified platform. It bridges the gap between raw blockchain data and actionable insights.',
-    images: ['/xyro-1.png', '/xyro-2.png'],
-    tags: ['React', 'Data Visualization', 'Web3', 'Analytics', 'Dashboard'],
-    highlights: [
-      'Performance Dashboard & Trading Journal',
-      'Altcoin to Bitcoin Correlation Analysis',
-      'Real-time Orderbook Liquidity',
-      'Whale & Anomaly Transaction Tracking',
-      'Integrated Economic News Feed',
-    ],
-    year: '2025 Present',
+  '/xyro-2.png': {
+    src: '/xyro-2-1024.webp',
+    srcSet: '/xyro-2-640.webp 640w, /xyro-2-1024.webp 1024w',
+    width: 1024,
+    height: 482,
   },
-  {
-    id: 3,
-    title: 'Seismic Tsunami Predictor (ML)',
-    category: 'Machine Learning Research',
-    tagline: 'Predicting tsunami potential based on seismic parameters using advanced ML algorithms.',
-    description:
-      'An in-depth data science research project analyzing over 128,000 rows of seismic earthquake data in Indonesia. The study compares the performance of Random Forest, K-Nearest Neighbor (KNN), and Support Vector Machine (SVM) algorithms. It implements SMOTE (Synthetic Minority Over-sampling Technique) to effectively handle data imbalance and predict tsunami likelihood with high accuracy.',
-    images: ['/research-1.png', '/research-2.png'],
-    tags: ['Machine Learning', 'Python', 'Data Science', 'Random Forest', 'SVM', 'SMOTE'],
-    highlights: [
-      'Published in Sinta 3 National Journal',
-      'Trained on > 128,000 rows of seismic dataset',
-      'Compared Random Forest, KNN, and SVM models',
-      'Optimized imbalanced data using SMOTE',
-      'Achieved high accuracy in predicting tsunami potential',
-    ],
-    year: '2024',
+  '/telegram-bot-1.jpg': {
+    src: '/telegram-bot-1-800.webp',
+    srcSet: '/telegram-bot-1-800.webp 800w',
+    width: 800,
+    height: 1584,
+    fit: 'contain',
   },
-];
+  '/telegram-bot-2.png': {
+    src: '/telegram-bot-2-774.webp',
+    srcSet: '/telegram-bot-2-774.webp 387w',
+    width: 387,
+    height: 300,
+    fit: 'contain',
+  },
+  '/research-1.png': {
+    src: '/research-1-672.webp',
+    srcSet: '/research-1-672.webp 336w',
+    width: 336,
+    height: 257,
+    fit: 'contain',
+  },
+  '/research-2.png': {
+    src: '/research-2-500.webp',
+    srcSet: '/research-2-500.webp 250w',
+    width: 250,
+    height: 254,
+    fit: 'contain',
+  },
+};
 
-/* ────────────────────────────────────────────
-   PROJECT CARD
-───────────────────────────────────────────── */
-const ProjectCard = ({ project, onClick }) => (
-  <motion.div
-    className="proj-card"
-    onClick={() => onClick(project)}
-    whileHover={{ y: -6 }}
-    transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-  >
-    {/* Preview thumbnail */}
-    <div className="proj-thumb">
-      {project.images && project.images.length > 0 ? (
-        <div className="proj-thumb-grid" style={{ gridTemplateColumns: project.images.length > 1 ? '1fr 1fr' : '1fr' }}>
-          {project.images.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`${project.title} preview ${i + 1}`}
-              className="proj-thumb-img"
-              onError={(e) => (e.target.style.display = 'none')}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="proj-thumb-fallback">
-          <span>📁</span>
-        </div>
-      )}
-      <div className="proj-thumb-overlay">
-        <span className="proj-view-btn">View Project ↗</span>
-      </div>
-    </div>
-
-    {/* Card info */}
-    <div className="proj-info">
-      <h3 className="proj-title">{project.title}</h3>
-      <p className="proj-category">{project.category}</p>
-    </div>
-  </motion.div>
-);
-
-/* ────────────────────────────────────────────
-   PROJECT MODAL
-───────────────────────────────────────────── */
-const ProjectModal = ({ project, onClose }) => {
-  if (!project) return null;
-
+export default function Projects() {
   return (
-    <AnimatePresence>
-      <motion.div
-        className="modal-backdrop"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-      >
-        <motion.div
-          className="modal-panel"
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
-          transition={{ type: 'spring', stiffness: 260, damping: 30 }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Close button */}
-          <button className="modal-close" onClick={onClose} aria-label="Close">
-            ✕
-          </button>
+    <section className="section" id="work">
+      <div className="shell">
+        <div className="section-head section-head--split">
+          <Reveal as="p" className="eyebrow">
+            Selected work
+          </Reveal>
+          <Reveal as="h2" className="section-head__title" delay={0.04}>
+            Things I have built and shipped
+          </Reveal>
+          <Reveal as="p" className="section-head__lede" delay={0.08}>
+            Three projects that cover the range: a production data platform, an
+            always-on automation service, and applied machine-learning research.
+          </Reveal>
+        </div>
 
-          {/* Image gallery */}
-          <div className="modal-gallery">
-            {project.images && project.images.length > 0 ? (
-              <div className="modal-gallery-grid" style={{ gridTemplateColumns: project.images.length > 1 ? '1fr 1fr' : '1fr' }}>
-                {project.images.map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt={`${project.title} ${i + 1}`}
-                    className="modal-gallery-img"
-                    onError={(e) => (e.target.style.display = 'none')}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="modal-gallery-fallback">No preview available</div>
-            )}
-          </div>
+        <div className="work__list">
+          {projects.map((project, index) => (
+            <article className="project" key={project.id}>
+              <Reveal className="project__media" y={18}>
+                <div
+                  className={[
+                    'project__frame',
+                    project.images.length > 1 ? 'project__frame--pair' : '',
+                    `project__frame--${project.mediaLayout || 'side'}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  {project.images.map((img, i) => {
+                    const m = media[img];
+                    if (!m) return null;
+                    return (
+                      <img
+                        key={img}
+                        src={m.src}
+                        srcSet={m.srcSet}
+                        sizes="(min-width: 940px) 46vw, (min-width: 560px) 44vw, 88vw"
+                        width={m.width}
+                        height={m.height}
+                        alt={`${project.title} — interface preview ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        data-fit={m.fit}
+                      />
+                    );
+                  })}
+                </div>
+              </Reveal>
 
-          {/* Content */}
-          <div className="modal-body">
-            <div className="modal-meta">
-              <span className="modal-category-badge">{project.category}</span>
-            </div>
+              <Reveal className="project__body" delay={0.06}>
+                <p className="project__index">
+                  {String(index + 1).padStart(2, '0')} — {project.year}
+                </p>
+                <h3 className="project__title">{project.title}</h3>
+                <p className="project__category">{project.category}</p>
+                <p className="project__tagline">{project.tagline}</p>
+                <p className="project__desc">{project.description}</p>
 
-            <h2 className="modal-title">{project.title}</h2>
-            <p className="modal-tagline">{project.tagline}</p>
-            <p className="modal-description">{project.description}</p>
-
-            {/* Highlights */}
-            {project.highlights && (
-              <div className="modal-highlights">
-                <h4>Key Highlights</h4>
-                <ul>
-                  {project.highlights.map((h, i) => (
-                    <li key={i}>
-                      <span className="highlight-dot"></span>
-                      {h}
+                <ul className="project__highlights">
+                  {project.highlights.map((h) => (
+                    <li className="project__highlight" key={h}>
+                      <Icon name="check" />
+                      <span>{h}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
 
-            {/* Tech tags */}
-            {project.tags && (
-              <div className="modal-tags">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="project-tag">{tag}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
-
-/* ────────────────────────────────────────────
-   MAIN PROJECTS SECTION
-───────────────────────────────────────────── */
-const Projects = () => {
-  const [selected, setSelected] = useState(null);
-
-  return (
-    <section className="section projects" id="projects">
-      <div className="container">
-        <motion.p
-          className="projects-eyebrow"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          SOME OF MY LATEST WORK
-        </motion.p>
-
-        <motion.div
-          className="proj-grid"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            show: { opacity: 1, transition: { staggerChildren: 0.15 } },
-          }}
-        >
-          {projectsData.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={{
-                hidden: { opacity: 0, y: 24 },
-                show:   { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80 } },
-              }}
-            >
-              <ProjectCard project={project} onClick={setSelected} />
-            </motion.div>
+                <ul className="project__tags">
+                  {project.tags.map((tag) => (
+                    <li className="tag" key={tag}>
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selected && (
-          <ProjectModal project={selected} onClose={() => setSelected(null)} />
-        )}
-      </AnimatePresence>
     </section>
   );
-};
-
-export default Projects;
+}

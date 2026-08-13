@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://myporto-aji.vercel.app/sitemap.xml

@@ -1,73 +1,53 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import Reveal from './Reveal';
+import { awards, experience } from '../data/site';
 
-const Experience = () => {
-  const experiences = [
-    {
-      role: 'IT Support (Internship)',
-      company: 'Bank BJB Operations Bureau',
-      period: '2025 - 2026',
-      desc: 'Provided technical support for daily operations, handled hardware/network troubleshooting, and managed system installations and configurations.'
-    },
-    {
-      role: 'Project Developer (Independent)',
-      company: 'Freelance',
-      period: '2024 - Present',
-      desc: 'Built an on-chain data aggregation platform and Telegram bots to automate and distribute on-chain & macro economic information using AI.'
-    },
-    {
-      role: 'Penetration Tester & Bug Hunter',
-      company: 'Freelance',
-      period: '2022 - Present',
-      desc: 'Discovered security vulnerabilities and evaluated systems through cyber attack simulations. Compiled structured vulnerability reports.'
-    },
-    {
-      role: 'Crypto Trader & Market Analyst',
-      company: 'Independent',
-      period: '2022 - Present',
-      desc: 'Actively traded on DEX/CEX platforms, analyzed markets using technical, macroeconomic, and sentiment analysis for AI-based trading bots.'
-    }
-  ];
-
+export default function Experience() {
   return (
-    <section className="section experience" id="experience">
-      <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Experience
-        </motion.h2>
-        
+    <section className="section" id="experience">
+      <div className="shell">
+        <div className="section-head section-head--split">
+          <Reveal as="p" className="eyebrow">
+            Track record
+          </Reveal>
+          <Reveal as="h2" className="section-head__title" delay={0.04}>
+            Experience and recognition
+          </Reveal>
+          <Reveal as="p" className="section-head__lede" delay={0.08}>
+            Roles held alongside study, plus results from national and
+            provincial cybersecurity competitions.
+          </Reveal>
+        </div>
+
         <div className="timeline">
-          {experiences.map((exp, index) => (
-            <motion.div 
-              className="timeline-item" 
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.2, type: "spring", stiffness: 50 }}
-            >
-              <div className="timeline-dot"></div>
-              <motion.div 
-                className="timeline-content"
-                whileHover={{ scale: 1.02 }}
-              >
-                <span className="timeline-period">{exp.period}</span>
-                <h3 className="timeline-role">{exp.role}</h3>
-                <h4 className="timeline-company">{exp.company}</h4>
-                <p className="timeline-desc">{exp.desc}</p>
-              </motion.div>
-            </motion.div>
+          {experience.map((item, i) => (
+            <Reveal className="tl-item" key={item.id} delay={i * 0.05}>
+              <p className="tl-period">{item.period}</p>
+              <h3 className="tl-role">{item.role}</h3>
+              <p className="tl-company">{item.company}</p>
+              <p className="tl-desc">{item.description}</p>
+            </Reveal>
           ))}
         </div>
+
+        <div className="section-head" style={{ marginTop: 'var(--sp-8)' }}>
+          <Reveal as="p" className="eyebrow">
+            Awards
+          </Reveal>
+        </div>
+
+        <Reveal as="ul" className="awards__list">
+          {awards.map((award, i) => (
+            <li className="award" key={award.id}>
+              <span className="award__num" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p className="award__placement">{award.placement}</p>
+              <p className="award__event">{award.event}</p>
+              <p className="award__scope">{award.scope}</p>
+            </li>
+          ))}
+        </Reveal>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}
