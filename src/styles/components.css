@@ -127,10 +127,12 @@
   --btn-bd: var(--ink-4);
 }
 
-/* WhatsApp is the primary contact route, so it gets the accent treatment. */
+/* WhatsApp is the primary contact route, so it gets the accent treatment.
+   The foreground is a token, not a hardcoded white: the dark theme's accent is
+   a light blue, on which white text only reaches 2.42:1. */
 .btn--wa {
   --btn-bg: var(--accent);
-  --btn-fg: #fff;
+  --btn-fg: var(--accent-on);
   --btn-bd: var(--accent);
 }
 
@@ -490,7 +492,10 @@
 }
 
 .hero__meta-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  /* 44px minimum: this is a mailto link and a primary tap target on mobile. */
+  min-height: 44px;
   padding-block: 0.3rem;
   color: var(--ink-2);
   text-decoration: underline;

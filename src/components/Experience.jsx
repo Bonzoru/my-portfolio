@@ -1,9 +1,11 @@
-import { m } from 'motion/react';
 import Reveal from './Reveal';
 import { awards, experience } from '../data/site';
 
-const ease = [0.16, 1, 0.3, 1];
-
+/**
+ * Awards use <Reveal as="li"> rather than their own whileInView so the
+ * fast-scroll blank-content failure mode is handled in exactly one place
+ * (see hooks/useReveal.js).
+ */
 export default function Experience() {
   return (
     <section className="section" id="experience">
@@ -40,13 +42,12 @@ export default function Experience() {
 
           <ul className="awards__list">
             {awards.map((award, i) => (
-              <m.li
+              <Reveal
+                as="li"
                 className="award"
                 key={award.id}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-8% 0px -4% 0px' }}
-                transition={{ duration: 0.42, delay: i * 0.05, ease }}
+                y={12}
+                delay={i * 0.05}
               >
                 <span className="award__num" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
@@ -54,7 +55,7 @@ export default function Experience() {
                 <p className="award__placement">{award.placement}</p>
                 <p className="award__event">{award.event}</p>
                 <p className="award__scope">{award.scope}</p>
-              </m.li>
+              </Reveal>
             ))}
           </ul>
         </div>

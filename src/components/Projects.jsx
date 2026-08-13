@@ -3,10 +3,88 @@ import { AnimatePresence, m } from 'motion/react';
 import Reveal from './Reveal';
 import Icon from './Icon';
 import ProjectDialog from './ProjectDialog';
+import useReveal from '../hooks/useReveal';
 import media from '../data/media';
 import { projects } from '../data/site';
 
 const ease = [0.16, 1, 0.3, 1];
+
+/**
+ * A single work card. Split out as its own component because the reveal hook
+ * cannot be called inside a .map() callback.
+ */
+function WorkCard({ project, index, onOpen }) {
+  const cover = media[project.images[0]];
+  const [ref, shown] = useReveal();
+
+  return (
+    <m.button
+      ref={ref}
+      id={`work-card-${project.id}`}
+      type="button"
+      className="work-card"
+      layoutId={`project-${project.id}`}
+      onClick={onOpen}
+      aria-haspopup="dialog"
+      initial={{ opacity: 0, y: 18 }}
+      animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease }}
+    >
+      <div
+        className="work-card__media"
+        /* The lead card keeps its capture's own ratio so the wide dashboard is
+           never cropped through its sidebar. The two cards that sit side by
+           side share the default 16/9 box so their titles and metadata rows
+           stay aligned, and crop from the top rather than letterboxing a
+           portrait capture. */
+        style={
+          index === 0 && cover
+            ? { aspectRatio: `${cover.width} / ${cover.height}` }
+            : undefined
+        }
+      >
+        {cover && (
+          <img
+            src={cover.src}
+            srcSet={cover.srcSet}
+            sizes="(min-width: 1200px) 580px, (min-width: 720px) 46vw, 92vw"
+            width={cover.width}
+            height={cover.height}
+            alt={`${project.title}, interface preview`}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+      </div>
+
+      <div className="work-card__body">
+        <div className="work-card__top">
+          <span className="work-card__index">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="work-card__year">{project.year}</span>
+        </div>
+
+        <h3 className="work-card__title">{project.title}</h3>
+        <p className="work-card__category">{project.category}</p>
+        <p className="work-card__tagline">{project.tagline}</p>
+
+        <ul className="work-card__tags">
+          {project.tags.slice(0, 4).map((tag) => (
+            <li className="tag" key={tag}>
+              {tag}
+            </li>
+          ))}
+        </ul>
+
+        <span className="work-card__more">
+          View project detail
+          <Icon name="arrowRight" />
+        </span>
+      </div>
+    </m.button>
+  );
+}
 
 /**
  * Selected work as individual cards. Each card is a real <button>, so the
@@ -43,77 +121,14 @@ export default function Projects() {
         </div>
 
         <div className="work__grid">
-          {projects.map((project, index) => {
-            const cover = media[project.images[0]];
-            return (
-              <m.button
-                key={project.id}
-                id={`work-card-${project.id}`}
-                type="button"
-                className="work-card"
-                layoutId={`project-${project.id}`}
-                onClick={() => setOpenId(project.id)}
-                aria-haspopup="dialog"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10% 0px -6% 0px' }}
-                transition={{ duration: 0.5, delay: index * 0.08, ease }}
-              >
-                <div
-                  className="work-card__media"
-                  /* The lead card keeps its capture's own ratio so the wide
-                     dashboard is never cropped through its sidebar. The two
-                     cards that sit side by side share the default 16/9 box so
-                     their titles and metadata rows stay aligned, and crop from
-                     the top rather than letterboxing a portrait capture. */
-                  style={
-                    index === 0 && cover
-                      ? { aspectRatio: `${cover.width} / ${cover.height}` }
-                      : undefined
-                  }
-                >
-                  {cover && (
-                    <img
-                      src={cover.src}
-                      srcSet={cover.srcSet}
-                      sizes="(min-width: 1200px) 580px, (min-width: 720px) 46vw, 92vw"
-                      width={cover.width}
-                      height={cover.height}
-                      alt={`${project.title}, interface preview`}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
-                </div>
-
-                <div className="work-card__body">
-                  <div className="work-card__top">
-                    <span className="work-card__index">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <span className="work-card__year">{project.year}</span>
-                  </div>
-
-                  <h3 className="work-card__title">{project.title}</h3>
-                  <p className="work-card__category">{project.category}</p>
-                  <p className="work-card__tagline">{project.tagline}</p>
-
-                  <ul className="work-card__tags">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <li className="tag" key={tag}>
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <span className="work-card__more">
-                    View project detail
-                    <Icon name="arrowRight" />
-                  </span>
-                </div>
-              </m.button>
-            );
-          })}
+          {projects.map((project, index) => (
+            <WorkCard
+              key={project.id}
+              project={project}
+              index={index}
+              onOpen={() => setOpenId(project.id)}
+            />
+          ))}
         </div>
       </div>
 

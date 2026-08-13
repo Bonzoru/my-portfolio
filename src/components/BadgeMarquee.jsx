@@ -1,5 +1,6 @@
 import { m } from 'motion/react';
 import { ciscoBadges, credlyBadgeUrl } from '../data/site';
+import useReveal from '../hooks/useReveal';
 
 /**
  * Cisco badge marquee.
@@ -22,15 +23,16 @@ import { ciscoBadges, credlyBadgeUrl } from '../data/site';
 export default function BadgeMarquee() {
   const lap = [...ciscoBadges, ...ciscoBadges];
   const duration = `${ciscoBadges.length * 6}s`;
+  const [ref, shown] = useReveal();
 
   return (
     <>
       <div className="marquee" style={{ '--marquee-duration': duration }}>
         <m.div
+          ref={ref}
           className="marquee__track"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: shown ? 1 : 0 }}
           transition={{ duration: 0.6 }}
         >
           {lap.map((badge, i) => {

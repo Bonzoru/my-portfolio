@@ -32,6 +32,8 @@
   --accent-ink: #1d4ed8;
   --accent-wash: #eff4ff;
   --accent-line: #c7d8fe;
+  /* Text/icon colour that sits ON --accent. Light theme: white on blue. */
+  --accent-on: #ffffff;
   --focus: #2563eb;
 
   --selection: #dbe6ff;
@@ -73,6 +75,9 @@
   --accent-ink: #9cc3ff;
   --accent-wash: #141c2b;
   --accent-line: #2b3a55;
+  /* Dark theme's accent is a light blue, so text on it must be dark ink:
+     white would only reach 2.42:1. Against #6ea8fe this is 8.2:1. */
+  --accent-on: #0b1220;
   --focus: #6ea8fe;
 
   --selection: #24365c;
@@ -238,6 +243,10 @@ button {
   top: 0;
   transform: translate(-50%, -120%);
   z-index: 300;
+  display: inline-flex;
+  align-items: center;
+  /* 44px minimum so it is a real touch target once revealed. */
+  min-height: 44px;
   background: var(--ink);
   color: var(--bg);
   padding: 0.65rem 1.1rem;
