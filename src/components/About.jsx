@@ -1,6 +1,11 @@
 import Reveal from './Reveal';
 import { about } from '../data/site';
 
+/**
+ * The intro sentence renders exactly once, from `about.intro`. It used to be
+ * duplicated between the section lede and the prose column; the lede now
+ * carries it and the prose column continues from there.
+ */
 export default function About() {
   return (
     <section className="section" id="about">
@@ -13,7 +18,7 @@ export default function About() {
             Security-minded engineer, product-minded builder.
           </Reveal>
           <Reveal as="p" className="section-head__lede" delay={0.08}>
-            {about.paragraphs[0]}
+            {about.intro}
           </Reveal>
         </div>
 

@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Surya Aji Andriantoro — Web Developer, Cybersecurity & AI Engineer</title>
+    <title>Surya Aji Andriantoro - Web Developer, Cybersecurity & AI Engineer</title>
     <meta
       name="description"
       content="Portfolio of Surya Aji Andriantoro, an Informatics Engineering student in Bandar Lampung working across web development, cybersecurity, and AI engineering."
@@ -21,11 +21,11 @@
     <meta property="og:url" content="https://myporto-aji.vercel.app/" />
     <meta
       property="og:title"
-      content="Surya Aji Andriantoro — Web Developer, Cybersecurity & AI Engineer"
+      content="Surya Aji Andriantoro - Web Developer, Cybersecurity & AI Engineer"
     />
     <meta
       property="og:description"
-      content="Selected work in web development, cybersecurity, and applied machine learning, plus verifiable Cisco Networking Academy credentials."
+      content="Selected work in web development, cybersecurity, and applied machine learning, plus verifiable Cisco Networking Academy and Komdigi credentials."
     />
     <meta property="og:image" content="https://myporto-aji.vercel.app/surya-dev-1024.webp" />
     <meta property="og:image:alt" content="Portrait of Surya Aji Andriantoro" />
@@ -33,7 +33,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Surya Aji Andriantoro — Web Developer, Cybersecurity & AI Engineer"
+      content="Surya Aji Andriantoro - Web Developer, Cybersecurity & AI Engineer"
     />
     <meta
       name="twitter:description"
@@ -43,6 +43,33 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Resolve the theme before first paint so there is no flash of the wrong
+      colours. An explicit choice in localStorage wins; otherwise follow the OS.
+      Kept inline and tiny on purpose: it must run before the CSS applies.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.dataset.theme = theme;
+          if (theme === 'dark') {
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute('content', '#0b0d12');
+          }
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
 
     <script type="application/ld+json">
       {

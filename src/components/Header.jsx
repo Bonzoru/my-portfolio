@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, m } from 'motion/react';
 import Icon from './Icon';
-import { navigation, profile } from '../data/site';
+import ThemeToggle from './ThemeToggle';
+import { navigation, profile, whatsappUrl } from '../data/site';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -19,13 +20,17 @@ export default function Header() {
   /* Track the section in view so the desktop nav reflects position. */
   useEffect(() => {
     const ids = navigation.map((n) => n.href.slice(1));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (!sections.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // While the hero is on screen no nav item is current: highlighting
+        // "About" at scroll position 0 would misreport where the reader is.
+        if (window.scrollY < window.innerHeight * 0.45) {
+          setActive('');
+          return;
+        }
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -34,7 +39,18 @@ export default function Header() {
       { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] },
     );
     sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+
+    // The observer only fires on threshold crossings, so scrolling back into
+    // the hero needs its own listener to clear the indicator.
+    const onScroll = () => {
+      if (window.scrollY < window.innerHeight * 0.45) setActive('');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   /* Lock scroll and restore focus while the mobile sheet is open. */
@@ -83,21 +99,32 @@ export default function Header() {
             </ul>
           </nav>
 
-          <a className="btn btn--ghost header__cta" href={`mailto:${profile.email}`}>
-            Get in touch
-          </a>
+          <div className="header__actions">
+            <ThemeToggle />
 
-          <button
-            ref={toggleRef}
-            className="nav-toggle"
-            type="button"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen(true)}
-          >
-            <Icon name="menu" />
-            <span className="sr-only">Open menu</span>
-          </button>
+            <a
+              className="btn btn--ghost header__cta"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="whatsapp" className="btn__icon" />
+              WhatsApp
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+
+            <button
+              ref={toggleRef}
+              className="nav-toggle"
+              type="button"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => setOpen(true)}
+            >
+              <Icon name="menu" />
+              <span className="sr-only">Open menu</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -151,17 +178,23 @@ export default function Header() {
               </ul>
 
               <div className="mobile-nav__foot">
-                <a className="btn" href={`mailto:${profile.email}`} onClick={() => setOpen(false)}>
-                  <Icon name="mail" className="btn__icon" />
-                  Email me
+                <a
+                  className="btn btn--wa"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                >
+                  <Icon name="whatsapp" className="btn__icon" />
+                  Chat on WhatsApp
                 </a>
                 <a
                   className="btn btn--ghost"
-                  href={`tel:${profile.phoneHref}`}
+                  href={`mailto:${profile.email}`}
                   onClick={() => setOpen(false)}
                 >
-                  <Icon name="phone" className="btn__icon" />
-                  {profile.phone}
+                  <Icon name="mail" className="btn__icon" />
+                  Email me
                 </a>
               </div>
             </div>

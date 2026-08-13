@@ -4,7 +4,7 @@ import { profile } from '../data/site';
 
 const ease = [0.16, 1, 0.3, 1];
 
-/** Staggered entrance, hero only — the rest of the page uses <Reveal/>. */
+/** Staggered entrance, hero only. The rest of the page uses <Reveal/>. */
 const rise = (delay) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },

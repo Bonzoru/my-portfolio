@@ -1,4 +1,5 @@
-import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
+import { domMax, LazyMotion, MotionConfig } from 'motion/react';
+import Backdrop from './components/Backdrop';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,12 +13,15 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     // reducedMotion="user" makes every Motion animation respect the OS setting.
-    // LazyMotion + `m` ships only the DOM animation features we actually use.
+    // LazyMotion + `m` keeps the animation runtime out of the initial chunk.
+    // domMax (not domAnimation) is required because the project cards use
+    // layoutId for the shared-element transition into the detail dialog.
     <MotionConfig reducedMotion="user">
-      <LazyMotion features={domAnimation} strict>
+      <LazyMotion features={domMax} strict>
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
+        <Backdrop />
         <Header />
         <main id="main">
           <Hero />

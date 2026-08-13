@@ -1,55 +1,30 @@
+import { useCallback, useState } from 'react';
+import { AnimatePresence, m } from 'motion/react';
 import Reveal from './Reveal';
 import Icon from './Icon';
+import ProjectDialog from './ProjectDialog';
+import media from '../data/media';
 import { projects } from '../data/site';
 
-/**
- * Responsive sources for the screenshots that were already in /public.
- * Each entry maps the original file to the generated webp variants.
- */
-const media = {
-  '/xyro-1.png': {
-    src: '/xyro-1-1024.webp',
-    srcSet: '/xyro-1-640.webp 640w, /xyro-1-1024.webp 1024w',
-    width: 1024,
-    height: 486,
-  },
-  '/xyro-2.png': {
-    src: '/xyro-2-1024.webp',
-    srcSet: '/xyro-2-640.webp 640w, /xyro-2-1024.webp 1024w',
-    width: 1024,
-    height: 482,
-  },
-  '/telegram-bot-1.jpg': {
-    src: '/telegram-bot-1-800.webp',
-    srcSet: '/telegram-bot-1-800.webp 800w',
-    width: 800,
-    height: 1584,
-    fit: 'contain',
-  },
-  '/telegram-bot-2.png': {
-    src: '/telegram-bot-2-774.webp',
-    srcSet: '/telegram-bot-2-774.webp 387w',
-    width: 387,
-    height: 300,
-    fit: 'contain',
-  },
-  '/research-1.png': {
-    src: '/research-1-672.webp',
-    srcSet: '/research-1-672.webp 336w',
-    width: 336,
-    height: 257,
-    fit: 'contain',
-  },
-  '/research-2.png': {
-    src: '/research-2-500.webp',
-    srcSet: '/research-2-500.webp 250w',
-    width: 250,
-    height: 254,
-    fit: 'contain',
-  },
-};
+const ease = [0.16, 1, 0.3, 1];
 
+/**
+ * Selected work as individual cards. Each card is a real <button>, so the
+ * detail panel opens on click, tap, Enter and Space alike; nothing here depends
+ * on hover. Hover only adds polish (lift, slight image zoom, accent border).
+ */
 export default function Projects() {
+  const [openId, setOpenId] = useState(null);
+  const active = projects.find((p) => p.id === openId) || null;
+
+  const close = useCallback(() => {
+    setOpenId(null);
+    // Return focus to the card that opened the panel.
+    requestAnimationFrame(() => {
+      document.getElementById(`work-card-${openId}`)?.focus();
+    });
+  }, [openId]);
+
   return (
     <section className="section" id="work">
       <div className="shell">
@@ -63,73 +38,88 @@ export default function Projects() {
           <Reveal as="p" className="section-head__lede" delay={0.08}>
             Three projects that cover the range: a production data platform, an
             always-on automation service, and applied machine-learning research.
+            Open a card for the full detail.
           </Reveal>
         </div>
 
-        <div className="work__list">
-          {projects.map((project, index) => (
-            <article className="project" key={project.id}>
-              <Reveal className="project__media" y={18}>
+        <div className="work__grid">
+          {projects.map((project, index) => {
+            const cover = media[project.images[0]];
+            return (
+              <m.button
+                key={project.id}
+                id={`work-card-${project.id}`}
+                type="button"
+                className="work-card"
+                layoutId={`project-${project.id}`}
+                onClick={() => setOpenId(project.id)}
+                aria-haspopup="dialog"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10% 0px -6% 0px' }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease }}
+              >
                 <div
-                  className={[
-                    'project__frame',
-                    project.images.length > 1 ? 'project__frame--pair' : '',
-                    `project__frame--${project.mediaLayout || 'side'}`,
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className="work-card__media"
+                  /* The lead card keeps its capture's own ratio so the wide
+                     dashboard is never cropped through its sidebar. The two
+                     cards that sit side by side share the default 16/9 box so
+                     their titles and metadata rows stay aligned, and crop from
+                     the top rather than letterboxing a portrait capture. */
+                  style={
+                    index === 0 && cover
+                      ? { aspectRatio: `${cover.width} / ${cover.height}` }
+                      : undefined
+                  }
                 >
-                  {project.images.map((img, i) => {
-                    const m = media[img];
-                    if (!m) return null;
-                    return (
-                      <img
-                        key={img}
-                        src={m.src}
-                        srcSet={m.srcSet}
-                        sizes="(min-width: 940px) 46vw, (min-width: 560px) 44vw, 88vw"
-                        width={m.width}
-                        height={m.height}
-                        alt={`${project.title} — interface preview ${i + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                        data-fit={m.fit}
-                      />
-                    );
-                  })}
+                  {cover && (
+                    <img
+                      src={cover.src}
+                      srcSet={cover.srcSet}
+                      sizes="(min-width: 1200px) 580px, (min-width: 720px) 46vw, 92vw"
+                      width={cover.width}
+                      height={cover.height}
+                      alt={`${project.title}, interface preview`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
                 </div>
-              </Reveal>
 
-              <Reveal className="project__body" delay={0.06}>
-                <p className="project__index">
-                  {String(index + 1).padStart(2, '0')} — {project.year}
-                </p>
-                <h3 className="project__title">{project.title}</h3>
-                <p className="project__category">{project.category}</p>
-                <p className="project__tagline">{project.tagline}</p>
-                <p className="project__desc">{project.description}</p>
+                <div className="work-card__body">
+                  <div className="work-card__top">
+                    <span className="work-card__index">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="work-card__year">{project.year}</span>
+                  </div>
 
-                <ul className="project__highlights">
-                  {project.highlights.map((h) => (
-                    <li className="project__highlight" key={h}>
-                      <Icon name="check" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <h3 className="work-card__title">{project.title}</h3>
+                  <p className="work-card__category">{project.category}</p>
+                  <p className="work-card__tagline">{project.tagline}</p>
 
-                <ul className="project__tags">
-                  {project.tags.map((tag) => (
-                    <li className="tag" key={tag}>
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            </article>
-          ))}
+                  <ul className="work-card__tags">
+                    {project.tags.slice(0, 4).map((tag) => (
+                      <li className="tag" key={tag}>
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <span className="work-card__more">
+                    View project detail
+                    <Icon name="arrowRight" />
+                  </span>
+                </div>
+              </m.button>
+            );
+          })}
         </div>
       </div>
+
+      <AnimatePresence>
+        {active && <ProjectDialog project={active} onClose={close} />}
+      </AnimatePresence>
     </section>
   );
 }

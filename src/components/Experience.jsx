@@ -1,5 +1,8 @@
+import { m } from 'motion/react';
 import Reveal from './Reveal';
 import { awards, experience } from '../data/site';
+
+const ease = [0.16, 1, 0.3, 1];
 
 export default function Experience() {
   return (
@@ -29,24 +32,32 @@ export default function Experience() {
           ))}
         </div>
 
-        <div className="section-head" style={{ marginTop: 'var(--sp-8)' }}>
-          <Reveal as="p" className="eyebrow">
-            Awards
+        <div className="cred-block">
+          <Reveal className="subhead">
+            <h3 className="subhead__title">Awards</h3>
+            <p className="subhead__meta">{awards.length} competition results</p>
           </Reveal>
-        </div>
 
-        <Reveal as="ul" className="awards__list">
-          {awards.map((award, i) => (
-            <li className="award" key={award.id}>
-              <span className="award__num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="award__placement">{award.placement}</p>
-              <p className="award__event">{award.event}</p>
-              <p className="award__scope">{award.scope}</p>
-            </li>
-          ))}
-        </Reveal>
+          <ul className="awards__list">
+            {awards.map((award, i) => (
+              <m.li
+                className="award"
+                key={award.id}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-8% 0px -4% 0px' }}
+                transition={{ duration: 0.42, delay: i * 0.05, ease }}
+              >
+                <span className="award__num" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="award__placement">{award.placement}</p>
+                <p className="award__event">{award.event}</p>
+                <p className="award__scope">{award.scope}</p>
+              </m.li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
