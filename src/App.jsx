@@ -1,5 +1,6 @@
 import { domMax, LazyMotion, MotionConfig } from 'motion/react';
 import Backdrop from './components/Backdrop';
+import MediaProtection from './components/MediaProtection';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -44,6 +45,7 @@ export default function App() {
           Skip to main content
         </a>
         <Backdrop />
+        <MediaProtection />
         <Header />
         <main id="main">
           <Hero />

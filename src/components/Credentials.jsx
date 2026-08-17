@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { AnimatePresence, m } from 'motion/react';
 import Icon from './Icon';
+import Reveal from './Reveal';
+import BadgeMarquee from './BadgeMarquee';
 import CertificateDialog from './CertificateDialog';
 
 const ease = [0.16, 1, 0.3, 1];
 
 /**
- * Verified certifications section — redesigned as two issuer cards side by
+ * Verified certifications section, redesigned as two issuer cards side by
  * side (Komdigi left, Anthropic right). Each card fronts with the issuer
  * logo, a count, and a "View certification detail" button that opens a
  * dialog listing every certificate with its own preview + Verify link.
@@ -62,6 +64,16 @@ export default function Credentials({ issuers }) {
               </button>
             </m.article>
           ))}
+        </div>
+
+        <div className="cred-block">
+          <Reveal className="subhead">
+            <h3 className="subhead__title">Cisco Networking Academy</h3>
+            <p className="subhead__meta">
+              Digital badges on Credly
+            </p>
+          </Reveal>
+          <BadgeMarquee />
         </div>
       </div>
 

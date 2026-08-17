@@ -17,23 +17,15 @@ export const profile = {
   initials: 'SA',
   role: 'Web Developer, Cybersecurity & AI Engineer',
   headline:
-    'Bachelor of Informatics Engineering — early-career IT professional specializing in Web Development, Cybersecurity, AI engineering & automation, and Networking.',
+    'Bachelor of Informatics Engineering, early-career IT professional specializing in Web Development, Cybersecurity, AI engineering and automation, and Networking',
   summary:
     'Informatics Engineering graduate from Darmajaya Institute of Informatics and Business, working across web development, offensive security, and applied AI.',
   location: 'Bandar Lampung, Indonesia',
   email: 'suryaaji237@gmail.com',
-  // Display + dial format taken from the pre-redesign Footer component.
-  phone: '+62 857-6704-3962',
-  phoneHref: '+6285767043962',
-  // Same number in wa.me form: country code, no plus, no separators.
-  whatsapp: '6285767043962',
-  whatsappMessage: 'Hi Surya, I found your portfolio and would like to talk about a project.',
-  portrait: '/surya-dev.png',
+  portrait: '/surya-2026-1024.webp',
 };
 
-export const whatsappUrl = `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(
-  profile.whatsappMessage,
-)}`;
+export const mailtoUrl = `mailto:${profile.email}`;
 
 export const about = {
   /** The intro sentence lives here once and is rendered in exactly one place. */
@@ -239,98 +231,98 @@ export const credlyBadgeUrl = (id) => `https://www.credly.com/badges/${id}`;
 export const komdigiCertificates = [
   {
     id: 'membangun-lab-virtual-dasar-linux',
-    name: 'Membangun Lab Virtual & Dasar Linux',
+    name: 'Virtual Lab Setup & Linux Fundamentals',
     image: '/certificates/komdigi/images/membangun-lab-virtual-dasar-linux.webp',
     pdf: '/certificates/komdigi/pdf/membangun-lab-virtual-dasar-linux.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299809850-4549',
   },
   {
     id: 'seberapa-aman-informasi-anda-dari-ancaman-digital',
-    name: 'Seberapa Aman Informasi Anda dari Ancaman Digital',
+    name: 'InfoSec',
     image: '/certificates/komdigi/images/seberapa-aman-informasi-anda-dari-ancaman-digital.webp',
     pdf: '/certificates/komdigi/pdf/seberapa-aman-informasi-anda-dari-ancaman-digital.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299750990-6696',
   },
   {
     id: 'introduction-to-cyber-security-and-career-awareness',
-    name: 'Introduction to Cyber Security and Career Awareness',
+    name: 'Cybersecurity Fundamentals',
     image: '/certificates/komdigi/images/introduction-to-cyber-security-and-career-awareness.webp',
     pdf: '/certificates/komdigi/pdf/introduction-to-cyber-security-and-career-awareness.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299734850-28908',
   },
   {
     id: 'pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor',
-    name: 'Pengenalan Data Science dan Pemanfaatannya di Berbagai Sektor',
+    name: 'Introduction to Data Science and Its Industry Applications',
     image: '/certificates/komdigi/images/pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor.webp',
     pdf: '/certificates/komdigi/pdf/pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299818850-39960',
   },
   {
     id: 'ancaman-pembobolan-akun-pribadi-dan-pencegahannya',
-    name: 'Ancaman Pembobolan Akun Pribadi dan Pencegahannya',
+    name: 'Information Security Management System',
     image: '/certificates/komdigi/images/ancaman-pembobolan-akun-pribadi-dan-pencegahannya.webp',
     pdf: '/certificates/komdigi/pdf/ancaman-pembobolan-akun-pribadi-dan-pencegahannya.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299727990-9721',
   },
   {
     id: 'wawasan-karir-dalam-bidang-data-analytics',
-    name: 'Wawasan Karir dalam Bidang Data Analytics',
+    name: 'Data Analytics Career Insights',
     image: '/certificates/komdigi/images/wawasan-karir-dalam-bidang-data-analytics.webp',
     pdf: '/certificates/komdigi/pdf/wawasan-karir-dalam-bidang-data-analytics.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299746850-27718',
   },
   {
     id: 'ethical-hacker-for-dummies',
-    name: 'Ethical Hacker For Dummies',
+    name: 'Ethical Hacking Fundamentals',
     image: '/certificates/komdigi/images/ethical-hacker-for-dummies.webp',
     pdf: '/certificates/komdigi/pdf/ethical-hacker-for-dummies.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910030850-19247',
   },
   {
     id: 'ai-engineer-for-milenial',
-    name: 'AI Engineer For Milenial',
+    name: 'Prompt Engineering',
     image: '/certificates/komdigi/images/ai-engineer-for-milenial.webp',
     pdf: '/certificates/komdigi/pdf/ai-engineer-for-milenial.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910029850-24484',
   },
   {
     id: 'copywriting-ai-untuk-iklan-digital',
-    name: 'Copywriting AI Untuk Iklan Digital',
+    name: 'AI Copywriting for Digital Advertising',
     image: '/certificates/komdigi/images/copywriting-ai-untuk-iklan-digital.webp',
     pdf: '/certificates/komdigi/pdf/copywriting-ai-untuk-iklan-digital.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299829850-12767',
   },
   {
     id: 'memahami-aspek-pengembangan-produk-ai',
-    name: 'Memahami Aspek Pengembangan Produk AI',
+    name: 'AI Product Development Aspects',
     image: '/certificates/komdigi/images/memahami-aspek-pengembangan-produk-ai.webp',
     pdf: '/certificates/komdigi/pdf/memahami-aspek-pengembangan-produk-ai.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299814850-7444',
   },
   {
     id: 'produksi-konten-media-sosial-dengan-ai',
-    name: 'Produksi Konten Media Sosial Dengan AI',
+    name: 'AI-Driven Social Media Content Production',
     image: '/certificates/komdigi/images/produksi-konten-media-sosial-dengan-ai.webp',
     pdf: '/certificates/komdigi/pdf/produksi-konten-media-sosial-dengan-ai.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299794850-15953',
   },
   {
     id: 'konsep-pemrograman',
-    name: 'Konsep Pemrograman',
+    name: 'Programming Concepts',
     image: '/certificates/komdigi/images/konsep-pemrograman.webp',
     pdf: '/certificates/komdigi/pdf/konsep-pemrograman.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299793850-14930',
   },
   {
     id: 'introduction-to-cloud-computing',
-    name: 'Introduction To Cloud Computing',
+    name: 'Cloud Computing',
     image: '/certificates/komdigi/images/introduction-to-cloud-computing.webp',
     pdf: '/certificates/komdigi/pdf/introduction-to-cloud-computing.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299864850-19509',
   },
   {
     id: 'what-is-business-pitching',
-    name: 'What is Business Pitching',
+    name: 'Information Technology',
     image: '/certificates/komdigi/images/what-is-business-pitching.webp',
     pdf: '/certificates/komdigi/pdf/what-is-business-pitching.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299892850-4620',
@@ -338,7 +330,7 @@ export const komdigiCertificates = [
 ];
 
 /**
- * Anthropic certificates — issued via Anthropic's Skilljar platform.
+ * Anthropic certificates, issued via Anthropic's Skilljar platform.
  * Each entry carries the certificate artwork, the PDF, and the official
  * verification link so every one can be checked at the source.
  */

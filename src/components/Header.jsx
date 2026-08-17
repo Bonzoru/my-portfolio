@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, m } from 'motion/react';
 import Icon from './Icon';
 import ThemeToggle from './ThemeToggle';
-import { navigation, profile, whatsappUrl } from '../data/site';
+import { navigation, profile, mailtoUrl } from '../data/site';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -104,13 +104,10 @@ export default function Header() {
 
             <a
               className="btn btn--ghost header__cta"
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={mailtoUrl}
             >
-              <Icon name="whatsapp" className="btn__icon" />
-              WhatsApp
-              <span className="sr-only">(opens in a new tab)</span>
+              <Icon name="mail" className="btn__icon" />
+              Email
             </a>
 
             <button
@@ -180,23 +177,19 @@ export default function Header() {
               <div className="mobile-nav__foot">
                 <a
                   className="btn btn--wa"
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={mailtoUrl}
                   onClick={() => setOpen(false)}
                 >
-                  <Icon name="whatsapp" className="btn__icon" />
-                  Chat on WhatsApp
+                  <Icon name="mail" className="btn__icon" />
+                  Send an email
                 </a>
                 <a
                   className="btn btn--ghost"
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={mailtoUrl}
                   onClick={() => setOpen(false)}
                 >
-                  <Icon name="whatsapp" className="btn__icon" />
-                  WhatsApp
+                  <Icon name="mail" className="btn__icon" />
+                  {profile.email}
                 </a>
               </div>
             </div>

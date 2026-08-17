@@ -1,14 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { m } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, m } from 'motion/react';
 import Icon from './Icon';
 
 const ease = [0.16, 1, 0.3, 1];
 
 /**
  * Certificate detail dialog. Shows the issuer logo, then the full grid of
- * certificates — each row has the certificate artwork, its name, a "Preview"
- * button (opens the PDF) and a "Verify" button (opens the official
- * verification page in a new tab).
+ * certificates, each row has the certificate artwork, its name, a "Preview"
+ * button (opens the certificate image full-size in a lightbox) and a
+ * "Verify" button (opens the official verification page in a new tab).
  *
  * Accessibility mirrors ProjectDialog: role="dialog", aria-modal, Escape to
  * close, scroll lock, focus moved in and Tab cycled inside the panel.
@@ -16,6 +16,7 @@ const ease = [0.16, 1, 0.3, 1];
 export default function CertificateDialog({ issuer, onClose }) {
   const panelRef = useRef(null);
   const closeRef = useRef(null);
+  const [preview, setPreview] = useState(null);
 
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
@@ -24,6 +25,10 @@ export default function CertificateDialog({ issuer, onClose }) {
 
     const onKey = (e) => {
       if (e.key === 'Escape') {
+        if (preview) {
+          setPreview(null);
+          return;
+        }
         onClose();
         return;
       }
@@ -48,7 +53,7 @@ export default function CertificateDialog({ issuer, onClose }) {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
     };
-  }, [onClose]);
+  }, [onClose, preview]);
 
   const titleId = `cd-title-${issuer.id}`;
 
@@ -87,31 +92,38 @@ export default function CertificateDialog({ issuer, onClose }) {
           <ul className="cd-list">
             {issuer.certificates.map((cert) => (
               <li className="cd-item" key={cert.id}>
-                <img
-                  className="cd-item__thumb"
-                  src={cert.image}
-                  alt=""
-                  width="120"
-                  height="80"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <button
+                  type="button"
+                  className="cd-item__thumb-btn"
+                  onClick={() => setPreview(cert)}
+                  aria-label={`Preview ${cert.name} certificate image`}
+                >
+                  <img
+                    className="cd-item__thumb"
+                    src={cert.image}
+                    alt=""
+                    width="120"
+                    height="80"
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                  />
+                </button>
                 <div className="cd-item__text">
                   <span className="cd-item__name">{cert.name}</span>
                 </div>
                 <div className="cd-item__actions">
-                  {cert.pdf && (
-                    <a
-                      className="cd-btn"
-                      href={cert.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon name="eye" />
-                      Preview
-                      <span className="sr-only">Preview {cert.name} certificate</span>
-                    </a>
-                  )}
+                  <button
+                    type="button"
+                    className="cd-btn"
+                    onClick={() => setPreview(cert)}
+                  >
+                    <Icon name="eye" />
+                    Preview
+                    <span className="sr-only">
+                      Preview {cert.name} certificate image
+                    </span>
+                  </button>
                   {cert.verifyUrl && (
                     <a
                       className="cd-btn cd-btn--primary"
@@ -132,6 +144,39 @@ export default function CertificateDialog({ issuer, onClose }) {
           </ul>
         </div>
       </m.div>
+
+      <AnimatePresence>
+        {preview && (
+          <m.div
+            className="cd-lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            onClick={() => setPreview(null)}
+          >
+            <div className="cd-lightbox__inner" onClick={(e) => e.stopPropagation()}>
+              <img
+                className="cd-lightbox__img"
+                src={preview.image}
+                alt={`${preview.name} certificate`}
+                draggable="false"
+              />
+              <div className="cd-lightbox__bar">
+                <span className="cd-lightbox__name">{preview.name}</span>
+                <button
+                  type="button"
+                  className="pd-close"
+                  onClick={() => setPreview(null)}
+                >
+                  <Icon name="close" />
+                  <span className="sr-only">Close certificate preview</span>
+                </button>
+              </div>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </m.div>
   );
 }

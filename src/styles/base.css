@@ -358,3 +358,31 @@ button {
     padding-bottom: 0.35rem;
   }
 }
+
+/* ============================================================================
+   Media protection.
+
+   Applies to every image on the site: no drag, no selection, no right-click
+   save, no long-press save. Screenshot tooling that reads the DOM is
+   additionally confused by the transparent overlay. This is a deterrence
+   layer, not DRM: a determined visitor can always fetch the original asset
+   URL, so nothing here is advertised as absolute protection.
+   ========================================================================= */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.protected-media {
+  position: relative;
+}
+
+.protected-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}

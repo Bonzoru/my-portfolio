@@ -1,6 +1,6 @@
 import { m } from 'motion/react';
 import Icon from './Icon';
-import { profile, whatsappUrl } from '../data/site';
+import { profile, mailtoUrl } from '../data/site';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -53,14 +53,15 @@ export default function Hero() {
             <div className="hero__meta-row">
               <dt className="hero__meta-key">Education</dt>
               <dd className="hero__meta-val">
-                B.Eng. Informatics Engineering, Darmajaya Institute
+                Bachelor of Informatics Engineering, Institute of Informatics
+                and Business Darmajaya
               </dd>
             </div>
             <div className="hero__meta-row">
               <dt className="hero__meta-key">Contact</dt>
               <dd className="hero__meta-val">
-                <a className="hero__meta-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  WhatsApp
+                <a className="hero__meta-link" href={mailtoUrl}>
+                  {profile.email}
                 </a>
               </dd>
             </div>
@@ -74,14 +75,15 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease }}
         >
           <img
-            src="/surya-dev-640.webp"
-            srcSet="/surya-dev-640.webp 640w, /surya-dev-1024.webp 1024w"
+            src="/surya-2026-640.webp"
+            srcSet="/surya-2026-640.webp 640w, /surya-2026-1024.webp 1024w"
             sizes="(min-width: 820px) 380px, 78vw"
             width="640"
-            height="639"
+            height="800"
             alt={`Portrait of ${profile.name}`}
             fetchPriority="high"
             decoding="async"
+            draggable="false"
           />
         </m.div>
       </div>
