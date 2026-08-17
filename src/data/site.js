@@ -16,9 +16,10 @@ export const profile = {
   shortName: 'Surya Aji',
   initials: 'SA',
   role: 'Web Developer, Cybersecurity & AI Engineer',
-  headline: 'I build clean web applications and secure the systems behind them.',
+  headline:
+    'Bachelor of Informatics Engineering — early-career IT professional specializing in Web Development, Cybersecurity, AI engineering & automation, and Networking.',
   summary:
-    'Informatics Engineering student at Darmajaya Institute of Informatics and Business, working across web development, offensive security, and applied AI.',
+    'Informatics Engineering graduate from Darmajaya Institute of Informatics and Business, working across web development, offensive security, and applied AI.',
   location: 'Bandar Lampung, Indonesia',
   email: 'suryaaji237@gmail.com',
   // Display + dial format taken from the pre-redesign Footer component.
@@ -37,10 +38,10 @@ export const whatsappUrl = `https://wa.me/${profile.whatsapp}?text=${encodeURICo
 export const about = {
   /** The intro sentence lives here once and is rendered in exactly one place. */
   intro:
-    'I am an Informatics Engineering student at Darmajaya Institute of Informatics and Business with a strong interest and experience in Cybersecurity, Web Development, Networking, and AI Engineering.',
+    'Bachelor of Informatics Engineering with hands-on experience in Cybersecurity, Web Development, Networking, and AI Engineering.',
   paragraphs: [
+    'I work across the full stack of modern IT: building web interfaces that stay fast under real data, defending and testing systems the way an attacker would, and wiring AI into workflows that remove actual manual effort.',
     'With an active track record in national and provincial cybersecurity competitions, I am used to working independently and in teams. I pick up new technologies quickly and care about shipping work that holds up in production.',
-    'Most of my time goes to three things: building web interfaces that stay fast under real data, testing systems the way an attacker would, and wiring AI into workflows where it removes actual manual effort.',
   ],
   /** Every figure below is counted from the data in this file, not estimated. */
   facts: [
@@ -237,87 +238,259 @@ export const credlyBadgeUrl = (id) => `https://www.credly.com/badges/${id}`;
  */
 export const komdigiCertificates = [
   {
-    id: 'information-technology',
-    name: 'Information Technology',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299892850-4620',
+    id: 'membangun-lab-virtual-dasar-linux',
+    name: 'Membangun Lab Virtual & Dasar Linux',
+    image: '/certificates/komdigi/images/membangun-lab-virtual-dasar-linux.webp',
+    pdf: '/certificates/komdigi/pdf/membangun-lab-virtual-dasar-linux.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299809850-4549',
   },
   {
-    id: 'cloud-computing',
-    name: 'Cloud Computing',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299864850-19509',
-  },
-  {
-    id: 'programming-concepts',
-    name: 'Programming Concepts',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299793850-14930',
-  },
-  {
-    id: 'ai-social-media-content',
-    name: 'AI-Driven Social Media Content Production',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299794850-15953',
-  },
-  {
-    id: 'ai-product-development',
-    name: 'AI Product Development Aspects',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299814850-7444',
-  },
-  {
-    id: 'ai-copywriting',
-    name: 'AI Copywriting for Digital Advertising',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299829850-12767',
-  },
-  {
-    id: 'prompt-engineering',
-    name: 'Prompt Engineering',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910029850-24484',
-  },
-  {
-    id: 'ethical-hacking-fundamentals',
-    name: 'Ethical Hacking Fundamentals',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910030850-19247',
-  },
-  {
-    id: 'data-analytics-career-insights',
-    name: 'Data Analytics Career Insights',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299746850-27718',
-  },
-  {
-    id: 'intro-data-science',
-    name: 'Introduction to Data Science and Its Industry Applications',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299818850-39960',
-  },
-  {
-    id: 'isms',
-    name: 'Information Security Management System',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299727990-9721',
-  },
-  {
-    id: 'cybersecurity-fundamentals',
-    name: 'Cybersecurity Fundamentals',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299734850-28908',
-  },
-  {
-    id: 'infosec',
-    name: 'InfoSec',
+    id: 'seberapa-aman-informasi-anda-dari-ancaman-digital',
+    name: 'Seberapa Aman Informasi Anda dari Ancaman Digital',
+    image: '/certificates/komdigi/images/seberapa-aman-informasi-anda-dari-ancaman-digital.webp',
+    pdf: '/certificates/komdigi/pdf/seberapa-aman-informasi-anda-dari-ancaman-digital.pdf',
     verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299750990-6696',
   },
   {
-    id: 'virtual-lab-linux',
-    name: 'Virtual Lab Setup & Linux Fundamentals',
-    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299809850-4549',
+    id: 'introduction-to-cyber-security-and-career-awareness',
+    name: 'Introduction to Cyber Security and Career Awareness',
+    image: '/certificates/komdigi/images/introduction-to-cyber-security-and-career-awareness.webp',
+    pdf: '/certificates/komdigi/pdf/introduction-to-cyber-security-and-career-awareness.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299734850-28908',
+  },
+  {
+    id: 'pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor',
+    name: 'Pengenalan Data Science dan Pemanfaatannya di Berbagai Sektor',
+    image: '/certificates/komdigi/images/pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor.webp',
+    pdf: '/certificates/komdigi/pdf/pengenalan-data-science-dan-pemanfaatannya-di-berbagai-sektor.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299818850-39960',
+  },
+  {
+    id: 'ancaman-pembobolan-akun-pribadi-dan-pencegahannya',
+    name: 'Ancaman Pembobolan Akun Pribadi dan Pencegahannya',
+    image: '/certificates/komdigi/images/ancaman-pembobolan-akun-pribadi-dan-pencegahannya.webp',
+    pdf: '/certificates/komdigi/pdf/ancaman-pembobolan-akun-pribadi-dan-pencegahannya.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299727990-9721',
+  },
+  {
+    id: 'wawasan-karir-dalam-bidang-data-analytics',
+    name: 'Wawasan Karir dalam Bidang Data Analytics',
+    image: '/certificates/komdigi/images/wawasan-karir-dalam-bidang-data-analytics.webp',
+    pdf: '/certificates/komdigi/pdf/wawasan-karir-dalam-bidang-data-analytics.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299746850-27718',
+  },
+  {
+    id: 'ethical-hacker-for-dummies',
+    name: 'Ethical Hacker For Dummies',
+    image: '/certificates/komdigi/images/ethical-hacker-for-dummies.webp',
+    pdf: '/certificates/komdigi/pdf/ethical-hacker-for-dummies.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910030850-19247',
+  },
+  {
+    id: 'ai-engineer-for-milenial',
+    name: 'AI Engineer For Milenial',
+    image: '/certificates/komdigi/images/ai-engineer-for-milenial.webp',
+    pdf: '/certificates/komdigi/pdf/ai-engineer-for-milenial.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=22910029850-24484',
+  },
+  {
+    id: 'copywriting-ai-untuk-iklan-digital',
+    name: 'Copywriting AI Untuk Iklan Digital',
+    image: '/certificates/komdigi/images/copywriting-ai-untuk-iklan-digital.webp',
+    pdf: '/certificates/komdigi/pdf/copywriting-ai-untuk-iklan-digital.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299829850-12767',
+  },
+  {
+    id: 'memahami-aspek-pengembangan-produk-ai',
+    name: 'Memahami Aspek Pengembangan Produk AI',
+    image: '/certificates/komdigi/images/memahami-aspek-pengembangan-produk-ai.webp',
+    pdf: '/certificates/komdigi/pdf/memahami-aspek-pengembangan-produk-ai.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299814850-7444',
+  },
+  {
+    id: 'produksi-konten-media-sosial-dengan-ai',
+    name: 'Produksi Konten Media Sosial Dengan AI',
+    image: '/certificates/komdigi/images/produksi-konten-media-sosial-dengan-ai.webp',
+    pdf: '/certificates/komdigi/pdf/produksi-konten-media-sosial-dengan-ai.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299794850-15953',
+  },
+  {
+    id: 'konsep-pemrograman',
+    name: 'Konsep Pemrograman',
+    image: '/certificates/komdigi/images/konsep-pemrograman.webp',
+    pdf: '/certificates/komdigi/pdf/konsep-pemrograman.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299793850-14930',
+  },
+  {
+    id: 'introduction-to-cloud-computing',
+    name: 'Introduction To Cloud Computing',
+    image: '/certificates/komdigi/images/introduction-to-cloud-computing.webp',
+    pdf: '/certificates/komdigi/pdf/introduction-to-cloud-computing.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299864850-19509',
+  },
+  {
+    id: 'what-is-business-pitching',
+    name: 'What is Business Pitching',
+    image: '/certificates/komdigi/images/what-is-business-pitching.webp',
+    pdf: '/certificates/komdigi/pdf/what-is-business-pitching.pdf',
+    verifyUrl: 'https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=2299892850-4620',
   },
 ];
 
 /**
- * Anthropic certificates. Intentionally empty: the owner will supply the
- * certificate files and watermark later. The Credentials section reads this
- * array and renders a reserved slot when it is empty, so adding entries later
- * needs no layout or component changes.
- *
- * Expected shape when populated:
- *   { id, name, issued?: 'YYYY-MM-DD', verifyUrl?: string, image?: string }
+ * Anthropic certificates — issued via Anthropic's Skilljar platform.
+ * Each entry carries the certificate artwork, the PDF, and the official
+ * verification link so every one can be checked at the source.
  */
-export const anthropicCertificates = [];
+export const anthropicCertificates = [
+  {
+    id: 'claude-101',
+    name: 'Claude 101',
+    image: '/certificates/anthropic/images/claude-101.webp',
+    pdf: '/certificates/anthropic/pdf/claude-101.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/mx76zr7fcuk2',
+  },
+  {
+    id: 'claude-code-101',
+    name: 'Claude Code 101',
+    image: '/certificates/anthropic/images/claude-code-101.webp',
+    pdf: '/certificates/anthropic/pdf/claude-code-101.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/y54r289jdqzu',
+  },
+  {
+    id: 'claude-platform',
+    name: 'Claude Platform',
+    image: '/certificates/anthropic/images/claude-platform.webp',
+    pdf: '/certificates/anthropic/pdf/claude-platform.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/68ycck8e3aew',
+  },
+  {
+    id: 'introduction-to-claude-cowork',
+    name: 'Introduction to Claude Cowork',
+    image: '/certificates/anthropic/images/introduction-to-claude-cowork.webp',
+    pdf: '/certificates/anthropic/pdf/introduction-to-claude-cowork.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/szn3pai2jamf',
+  },
+  {
+    id: 'claude-code-in-action',
+    name: 'Claude Code in Action',
+    image: '/certificates/anthropic/images/claude-code-in-action.webp',
+    pdf: '/certificates/anthropic/pdf/claude-code-in-action.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/mc3c3e88r6ap',
+  },
+  {
+    id: 'ai-fluency-framework-foundations',
+    name: 'AI Fluency: Framework & Foundations',
+    image: '/certificates/anthropic/images/ai-fluency-framework-foundations.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-framework-foundations.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/ps57hxob588i',
+  },
+  {
+    id: 'building-with-the-claude-api',
+    name: 'Building with the Claude API',
+    image: '/certificates/anthropic/images/building-with-the-claude-api.webp',
+    pdf: '/certificates/anthropic/pdf/building-with-the-claude-api.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/oiyy2o8gc89v',
+  },
+  {
+    id: 'introduction-to-model-context-protocol',
+    name: 'Introduction to Model Context Protocol',
+    image: '/certificates/anthropic/images/introduction-to-model-context-protocol.webp',
+    pdf: '/certificates/anthropic/pdf/introduction-to-model-context-protocol.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/56nhuwmfjskd',
+  },
+  {
+    id: 'ai-fluency-for-educators',
+    name: 'AI Fluency for Educators',
+    image: '/certificates/anthropic/images/ai-fluency-for-educators.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-educators.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/v35b4yt87nas',
+  },
+  {
+    id: 'ai-fluency-for-students',
+    name: 'AI Fluency for Students',
+    image: '/certificates/anthropic/images/ai-fluency-for-students.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-students.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/qmo4qq7xv76z',
+  },
+  {
+    id: 'model-context-protocol-advanced-topics',
+    name: 'Model Context Protocol: Advanced Topics',
+    image: '/certificates/anthropic/images/model-context-protocol-advanced-topics.webp',
+    pdf: '/certificates/anthropic/pdf/model-context-protocol-advanced-topics.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/9isinow72fiy',
+  },
+  {
+    id: 'claude-with-amazon-bedrock',
+    name: 'Claude with Amazon Bedrock',
+    image: '/certificates/anthropic/images/claude-with-amazon-bedrock.webp',
+    pdf: '/certificates/anthropic/pdf/claude-with-amazon-bedrock.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/aap9zfwb368s',
+  },
+  {
+    id: 'claude-on-google-cloud',
+    name: 'Claude on Google Cloud',
+    image: '/certificates/anthropic/images/claude-on-google-cloud.webp',
+    pdf: '/certificates/anthropic/pdf/claude-on-google-cloud.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/xb79t8te2ywc',
+  },
+  {
+    id: 'teaching-ai-fluency',
+    name: 'Teaching AI Fluency',
+    image: '/certificates/anthropic/images/teaching-ai-fluency.webp',
+    pdf: '/certificates/anthropic/pdf/teaching-ai-fluency.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/hpe47z45nnas',
+  },
+  {
+    id: 'ai-fluency-for-nonprofits',
+    name: 'AI Fluency for Nonprofits',
+    image: '/certificates/anthropic/images/ai-fluency-for-nonprofits.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-nonprofits.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/bxgdvts657tt',
+  },
+  {
+    id: 'introduction-to-agent-skills',
+    name: 'Introduction to Agent Skills',
+    image: '/certificates/anthropic/images/introduction-to-agent-skills.webp',
+    pdf: '/certificates/anthropic/pdf/introduction-to-agent-skills.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/dxpc9p2vnkun',
+  },
+  {
+    id: 'introduction-to-subagents',
+    name: 'Introduction to Subagents',
+    image: '/certificates/anthropic/images/introduction-to-subagents.webp',
+    pdf: '/certificates/anthropic/pdf/introduction-to-subagents.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/4vgw8eih73su',
+  },
+  {
+    id: 'ai-capabilities-and-limitations',
+    name: 'AI Capabilities and Limitations',
+    image: '/certificates/anthropic/images/ai-capabilities-and-limitations.webp',
+    pdf: '/certificates/anthropic/pdf/ai-capabilities-and-limitations.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/ur49s5fdcx53',
+  },
+  {
+    id: 'ai-fluency-for-small-businesses',
+    name: 'AI Fluency for Small Businesses',
+    image: '/certificates/anthropic/images/ai-fluency-for-small-businesses.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-small-businesses.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/7mn8vbf9k5d5',
+  },
+  {
+    id: 'ai-fluency-for-builders',
+    name: 'AI Fluency for Builders',
+    image: '/certificates/anthropic/images/ai-fluency-for-builders.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-builders.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/wze9a37og6ij',
+  },
+  {
+    id: 'ai-fluency-for-pk-12-educators',
+    name: 'AI Fluency for PK-12 Educators',
+    image: '/certificates/anthropic/images/ai-fluency-for-pk-12-educators.webp',
+    pdf: '/certificates/anthropic/pdf/ai-fluency-for-pk-12-educators.pdf',
+    verifyUrl: 'https://verify.skilljar.com/c/tdokuskaiso3',
+  },
+];
 
 export const awards = [
   {

@@ -47,15 +47,6 @@ export default function Contact() {
               <span className="channel__value">{profile.phone}</span>
             </span>
           </a>
-          <a className="channel" href={`mailto:${profile.email}`}>
-            <span className="channel__icon">
-              <Icon name="mail" />
-            </span>
-            <span className="channel__text">
-              <span className="channel__label">Email</span>
-              <span className="channel__value">{profile.email}</span>
-            </span>
-          </a>
           <div className="channel">
             <span className="channel__icon">
               <Icon name="mapPin" />

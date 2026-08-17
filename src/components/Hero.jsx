@@ -1,6 +1,6 @@
 import { m } from 'motion/react';
 import Icon from './Icon';
-import { profile } from '../data/site';
+import { profile, whatsappUrl } from '../data/site';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -51,16 +51,16 @@ export default function Hero() {
               </dd>
             </div>
             <div className="hero__meta-row">
-              <dt className="hero__meta-key">Studying</dt>
+              <dt className="hero__meta-key">Education</dt>
               <dd className="hero__meta-val">
-                Informatics Engineering, Darmajaya Institute
+                B.Eng. Informatics Engineering, Darmajaya Institute
               </dd>
             </div>
             <div className="hero__meta-row">
-              <dt className="hero__meta-key">Email</dt>
+              <dt className="hero__meta-key">Contact</dt>
               <dd className="hero__meta-val">
-                <a className="hero__meta-link" href={`mailto:${profile.email}`}>
-                  {profile.email}
+                <a className="hero__meta-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  WhatsApp
                 </a>
               </dd>
             </div>

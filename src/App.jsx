@@ -9,6 +9,28 @@ import Credentials from './components/Credentials';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { anthropicCertificates, komdigiCertificates } from './data/site';
+
+const credentialIssuers = [
+  {
+    id: 'komdigi',
+    name: 'Komdigi Digital Talent',
+    logo: '/certificates/logos/komdigi.jpg',
+    description:
+      'Digital upskilling certificates from the Indonesian Ministry of Communication and Digital Affairs (Kementerian Komunikasi dan Digital).',
+    count: komdigiCertificates.length,
+    certificates: komdigiCertificates,
+  },
+  {
+    id: 'anthropic',
+    name: 'Anthropic',
+    logo: '/certificates/logos/anthropic.jpg',
+    description:
+      'AI fluency and Claude platform certificates issued through Anthropic’s Skilljar learning platform.',
+    count: anthropicCertificates.length,
+    certificates: anthropicCertificates,
+  },
+];
 
 export default function App() {
   return (
@@ -28,7 +50,7 @@ export default function App() {
           <About />
           <Skills />
           <Projects />
-          <Credentials />
+          <Credentials issuers={credentialIssuers} />
           <Experience />
           <Contact />
         </main>

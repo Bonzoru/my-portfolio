@@ -190,11 +190,13 @@ export default function Header() {
                 </a>
                 <a
                   className="btn btn--ghost"
-                  href={`mailto:${profile.email}`}
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                 >
-                  <Icon name="mail" className="btn__icon" />
-                  Email me
+                  <Icon name="whatsapp" className="btn__icon" />
+                  WhatsApp
                 </a>
               </div>
             </div>
