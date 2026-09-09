@@ -7,8 +7,6 @@ import useReveal from '../hooks/useReveal';
 import media from '../data/media';
 import { projects } from '../data/site';
 
-const ease = [0.16, 1, 0.3, 1];
-
 /**
  * A single work card. Split out as its own component because the reveal hook
  * cannot be called inside a .map() callback.
@@ -28,15 +26,11 @@ function WorkCard({ project, index, onOpen }) {
       aria-haspopup="dialog"
       initial={{ opacity: 0, y: 18 }}
       animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease }}
+      transition={{ type: 'spring', bounce: 0, duration: 0.5, delay: index * 0.08 }}
+      whileTap={{ scale: 0.985 }}
     >
       <div
         className="work-card__media"
-        /* The lead card keeps its capture's own ratio so the wide dashboard is
-           never cropped through its sidebar. The two cards that sit side by
-           side share the default 16/9 box so their titles and metadata rows
-           stay aligned, and crop from the top rather than letterboxing a
-           portrait capture. */
         style={
           index === 0 && cover
             ? { aspectRatio: `${cover.width} / ${cover.height}` }
@@ -86,18 +80,12 @@ function WorkCard({ project, index, onOpen }) {
   );
 }
 
-/**
- * Selected work as individual cards. Each card is a real <button>, so the
- * detail panel opens on click, tap, Enter and Space alike; nothing here depends
- * on hover. Hover only adds polish (lift, slight image zoom, accent border).
- */
 export default function Projects() {
   const [openId, setOpenId] = useState(null);
   const active = projects.find((p) => p.id === openId) || null;
 
   const close = useCallback(() => {
     setOpenId(null);
-    // Return focus to the card that opened the panel.
     requestAnimationFrame(() => {
       document.getElementById(`work-card-${openId}`)?.focus();
     });
