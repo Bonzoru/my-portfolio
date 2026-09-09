@@ -2,13 +2,13 @@ import { m } from 'motion/react';
 import Icon from './Icon';
 import { profile, mailtoUrl } from '../data/site';
 
-const ease = [0.16, 1, 0.3, 1];
+const spring = { type: 'spring', bounce: 0, duration: 0.5 };
 
 /** Staggered entrance, hero only. The rest of the page uses <Reveal/>. */
 const rise = (delay) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.55, delay, ease },
+  transition: { ...spring, delay },
 });
 
 export default function Hero() {
@@ -72,7 +72,7 @@ export default function Hero() {
           className="hero__portrait"
           initial={{ opacity: 0, scale: 0.985 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
+          transition={{ type: 'spring', bounce: 0, duration: 0.6, delay: 0.1 }}
         >
           <img
             src="/surya-2026-640.webp"
