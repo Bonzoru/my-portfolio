@@ -8,8 +8,6 @@ import useReveal from '../hooks/useReveal';
  * users who ask for reduced motion; the opacity fade is kept because it is not
  * vestibular motion, and useReveal guarantees it always resolves to 1.
  */
-const easeOut = [0.16, 1, 0.3, 1];
-
 export default function Reveal({
   as = 'div',
   children,
@@ -27,7 +25,7 @@ export default function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.5, delay, ease: easeOut }}
+      transition={{ type: 'spring', bounce: 0, duration: 0.5, delay }}
       {...rest}
     >
       {children}
