@@ -40,7 +40,7 @@ export const about = {
     { label: 'Featured projects', value: '3' },
     { label: 'Cisco badges', value: '11' },
     { label: 'Komdigi certificates', value: '14' },
-    { label: 'Competition awards', value: '4' },
+    { label: 'Competition awards', value: '7' },
   ],
 };
 
@@ -485,6 +485,24 @@ export const anthropicCertificates = [
 ];
 
 export const awards = [
+  {
+    id: 'satsiber-tni-rtr-2026',
+    placement: 'Harapan 1',
+    event: 'Rise The Ranger Incident Response — Satsiber TNI (2026)',
+    scope: 'National',
+  },
+  {
+    id: 'ncs-aptikom-provinsi-2026',
+    placement: 'Peringkat 2 Provinsi',
+    event: 'Nusantara Cybersecurity / NCS APTIKOM (2026)',
+    scope: 'Provincial',
+  },
+  {
+    id: 'mawapres-darmajaya-2026',
+    placement: 'Mahasiswa Berprestasi 2025/2026',
+    event: 'Institut Informatika dan Bisnis (IIB) Darmajaya',
+    scope: 'University',
+  },
   {
     id: 'ncs-national-2nd',
     placement: '2nd place, National',
