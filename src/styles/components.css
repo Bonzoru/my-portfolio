@@ -1030,8 +1030,9 @@
 }
 
 /* ----------------------------------------------------------- credentials -- */
-.cred-block + .cred-block {
-  margin-top: clamp(3rem, 2rem + 3vw, 4.5rem);
+.cred-block + .cred-block,
+.experience__awards {
+  margin-top: clamp(3.75rem, 2.5rem + 4vw, 6rem);
 }
 
 /* Cisco marquee ----------------------------------------------------------- */

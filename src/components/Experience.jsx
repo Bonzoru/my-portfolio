@@ -34,7 +34,7 @@ export default function Experience() {
           ))}
         </div>
 
-        <div className="cred-block">
+        <div className="cred-block experience__awards">
           <Reveal className="subhead">
             <h3 className="subhead__title">Awards</h3>
             <p className="subhead__meta">{awards.length} competition results</p>
