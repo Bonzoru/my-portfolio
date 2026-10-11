@@ -34,8 +34,7 @@ export default function BadgeMarquee() {
   const [ref, shown] = useReveal();
 
   return (
-    <>
-      <div className="marquee" style={{ '--marquee-duration': duration }}>
+    <div className="marquee" style={{ '--marquee-duration': duration }}>
         <m.div
           ref={ref}
           className="marquee__track"
@@ -79,10 +78,5 @@ export default function BadgeMarquee() {
           })}
         </m.div>
       </div>
-      <p className="marquee-hint">
-        {ciscoBadges.length} badges. Hover or focus to pause, then select a badge
-        to open its official Credly record.
-      </p>
-    </>
-  );
-}
+    );
+  }

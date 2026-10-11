@@ -4,6 +4,7 @@ import Icon from './Icon';
 import Reveal from './Reveal';
 import BadgeMarquee from './BadgeMarquee';
 import CertificateDialog from './CertificateDialog';
+import { fortinetBadges } from '../data/site';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -21,7 +22,7 @@ export default function Credentials({ issuers }) {
       <div className="shell">
         <div className="section-head section-head--split">
           <p className="eyebrow">Credentials</p>
-          <h2 className="section-head__title">Verified certifications</h2>
+          <h2 className="section-head__title">Verified Certification & Training</h2>
           <p className="section-head__lede">
             Every certificate opens the issuer&apos;s own verification page, so
             each one can be checked at the source.
@@ -74,6 +75,42 @@ export default function Credentials({ issuers }) {
             </p>
           </Reveal>
           <BadgeMarquee />
+        </div>
+
+        <div className="cred-block">
+          <Reveal className="subhead">
+            <h3 className="subhead__title">Fortinet Training Institute</h3>
+            <p className="subhead__meta">
+              3 certified badges
+            </p>
+          </Reveal>
+          <div className="badges-static-grid">
+            {fortinetBadges.map((badge, i) => (
+              <Reveal
+                as="a"
+                key={badge.id}
+                className="badge-card"
+                href={badge.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                delay={i * 0.05}
+              >
+                <span className="badge-card__plate">
+                  <img
+                    src={badge.image}
+                    width="128"
+                    height="128"
+                    alt={`${badge.name} badge, issued by Fortinet`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span className="badge-card__name">{badge.name}</span>
+                <span className="badge-card__meta">Fortinet</span>
+                <span className="badge-card__kind">Certification</span>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
 

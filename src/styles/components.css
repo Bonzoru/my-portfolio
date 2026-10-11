@@ -1030,9 +1030,17 @@
 }
 
 /* ----------------------------------------------------------- credentials -- */
+.cred-grid + .cred-block,
 .cred-block + .cred-block,
 .experience__awards {
   margin-top: clamp(3.75rem, 2.5rem + 4vw, 6rem);
+}
+
+.badges-static-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  padding-block: var(--sp-2);
 }
 
 /* Cisco marquee ----------------------------------------------------------- */

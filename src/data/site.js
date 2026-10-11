@@ -224,6 +224,36 @@ export const ciscoBadges = [
 export const credlyBadgeUrl = (id) => `https://www.credly.com/badges/${id}`;
 
 /**
+ * Fortinet digital badges from Fortinet Training Institute (NSE 1, 2, 3).
+ */
+export const fortinetBadges = [
+  {
+    id: 'fortinet-nse-1',
+    name: 'NSE 1 Certified: Cybersecurity',
+    kind: 'certification',
+    issued: 'Fortinet',
+    image: '/badges/fortinet-nse-1.png',
+    verifyUrl: 'https://training.fortinet.com/',
+  },
+  {
+    id: 'fortinet-nse-2',
+    name: 'NSE 2 Certified: Cybersecurity',
+    kind: 'certification',
+    issued: 'Fortinet',
+    image: '/badges/fortinet-nse-2.png',
+    verifyUrl: 'https://training.fortinet.com/',
+  },
+  {
+    id: 'fortinet-nse-3',
+    name: 'NSE 3 Certified: Cybersecurity',
+    kind: 'certification',
+    issued: 'Fortinet',
+    image: '/badges/fortinet-nse-3.png',
+    verifyUrl: 'https://training.fortinet.com/',
+  },
+];
+
+/**
  * Komdigi (Kementerian Komunikasi dan Digital) certificates.
  * Names and verification links are exactly as supplied by the owner. The
  * verification page is opened in a new tab, never embedded in an iframe.
