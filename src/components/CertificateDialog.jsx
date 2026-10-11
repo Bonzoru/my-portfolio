@@ -80,7 +80,9 @@ export default function CertificateDialog({ issuer, onClose }) {
             <h3 className="pd-title" id={titleId}>
               {issuer.name} certificates
             </h3>
-            <p className="pd-meta">{issuer.count} verified certificates</p>
+            <p className="pd-meta">
+              {issuer.count} {issuer.count === 1 ? 'verified certificate' : 'verified certificates'}
+            </p>
           </div>
           <button ref={closeRef} className="pd-close" type="button" onClick={onClose}>
             <Icon name="close" />

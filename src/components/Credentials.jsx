@@ -50,7 +50,7 @@ export default function Credentials({ issuers }) {
                 <div className="cred-card__title">
                   <h3 className="cred-card__name">{iss.name}</h3>
                   <p className="cred-card__meta">
-                    {iss.count} certificates
+                    {iss.count} {iss.count === 1 ? 'certificate' : 'certificates'}
                   </p>
                 </div>
               </div>

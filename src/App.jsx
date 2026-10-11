@@ -9,8 +9,11 @@ import Projects from './components/Projects';
 import Credentials from './components/Credentials';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
-import { anthropicCertificates, komdigiCertificates } from './data/site';
+import {
+  anthropicCertificates,
+  komdigiCertificates,
+  redTeamLeadersCertificates,
+} from './data/site';
 
 const credentialIssuers = [
   {
@@ -30,6 +33,15 @@ const credentialIssuers = [
       'AI fluency and Claude platform certificates issued through Anthropic’s Skilljar learning platform.',
     count: anthropicCertificates.length,
     certificates: anthropicCertificates,
+  },
+  {
+    id: 'red-team-leaders',
+    name: 'Red Team Leaders',
+    logo: '/certificates/logos/redteamleaders.png',
+    description:
+      'Offensive cybersecurity certification and educator credentials issued by Red Team Leaders.',
+    count: redTeamLeadersCertificates.length,
+    certificates: redTeamLeadersCertificates,
   },
 ];
 

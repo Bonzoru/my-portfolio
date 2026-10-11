@@ -514,6 +514,18 @@ export const anthropicCertificates = [
   },
 ];
 
+/**
+ * Red Team Leaders certificates.
+ */
+export const redTeamLeadersCertificates = [
+  {
+    id: 'ccep',
+    name: 'Certified Cybersecurity Educator Professional (CCEP)',
+    image: '/certificates/redteamleaders/images/ccep.png',
+    verifyUrl: 'https://courses.redteamleaders.com/exam-completion/f1ea9e0e67acd9f7',
+  },
+];
+
 export const awards = [
   {
     id: 'rtr-satsiber-tni-2026',

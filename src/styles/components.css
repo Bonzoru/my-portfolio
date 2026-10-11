@@ -1616,9 +1616,15 @@
   margin-top: var(--sp-5);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 680px) and (max-width: 959px) {
   .cred-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .cred-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
