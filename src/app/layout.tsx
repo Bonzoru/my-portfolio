@@ -103,14 +103,25 @@ function getRootJsonLd() {
   }
 }
 
-// Runs synchronously before body paint to set the theme-color meta tag
-// for the initial render. next-themes handles the `class` attribute swap.
+// Runs synchronously before body paint to enforce dark mode by default
+// unless the user explicitly selected light mode in sryaaji-theme.
 const themeColorBootstrap = String.raw`
   try {
-    var isDark = localStorage.theme !== 'light';
+    var stored = localStorage.getItem('sryaaji-theme');
+    var isDark = stored !== 'light';
+    var root = document.documentElement;
     if (isDark) {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      root.style.colorScheme = 'dark';
       var meta = document.querySelector('meta[name=\"theme-color\"]');
       if (meta) meta.setAttribute('content', '${META_THEME_COLORS.dark}');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      root.style.colorScheme = 'light';
+      var metaLight = document.querySelector('meta[name=\"theme-color\"]');
+      if (metaLight) metaLight.setAttribute('content', '${META_THEME_COLORS.light}');
     }
   } catch (_) {}\
 
@@ -197,7 +208,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className="dark"
+      style={{ colorScheme: "dark" }}
+      suppressHydrationWarning
+    >
       <head>
         <Script
           id="theme-color-bootstrap"

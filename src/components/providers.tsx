@@ -14,7 +14,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem={false}
       disableTransitionOnChange
       enableColorScheme
-      storageKey="theme"
+      storageKey="sryaaji-theme"
       defaultTheme="dark"
       attribute="class"
     >
