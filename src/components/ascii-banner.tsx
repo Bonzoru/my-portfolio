@@ -33,7 +33,7 @@ const GLYPH_CHARS = [
 ]
 
 export function AsciiBanner({
-  src = "/bannerfield.webp",
+  src = "/banner-header.webp",
   alt = "Profile Banner",
   className = "",
   cellWidth = 7,
@@ -97,7 +97,7 @@ export function AsciiBanner({
           drawX = -(drawW - cols) / 2
         } else {
           drawH = cols / imgAspect
-          drawY = -(drawH - rows) * 0.4
+          drawY = -(drawH - rows) * 0.42
         }
 
         sampleCtx.clearRect(0, 0, cols, rows)
@@ -163,15 +163,15 @@ export function AsciiBanner({
 
           const lum = 0.299 * red + 0.587 * green + 0.114 * blue
 
-          // Only illuminate the light beam, leaving mountains & shadows completely crisp
-          if (lum < 100) continue
+          // Illuminate the bright swirling clouds & sky portal while keeping landmarks crisp
+          if (lum < 140) continue
 
           // Harmonized stream animation across rows
           const wave =
             Math.sin(c * 0.12 + t * 1.5) * 1.5 +
             Math.cos(r * 0.25 - t * 1.2) * 1.5
 
-          const normLum = Math.min(1, Math.max(0, (lum - 100) / 155))
+          const normLum = Math.min(1, Math.max(0, (lum - 140) / 115))
           const maxGlyphIndex = Math.min(
             GLYPH_CHARS.length - 1,
             Math.floor(normLum * GLYPH_CHARS.length)
@@ -184,7 +184,6 @@ export function AsciiBanner({
 
           const posX = Math.round(c * cellWidth + cellWidth / 2)
 
-          // Zone color intelligence (cyan in sky, white in core, gold in meadow)
           const isGolden = red > 120 && green > 110 && blue < 155
           const isCyan = blue > red + 10
           const boost = Math.min(1.25, lum / 160 + 0.2)
@@ -202,7 +201,7 @@ export function AsciiBanner({
             Math.floor(blue * boost + (isGolden ? 0 : isCyan ? 35 : 20))
           )
 
-          const charAlpha = Math.min(0.85, normLum * 0.6 + 0.2)
+          const charAlpha = Math.min(0.85, normLum * 0.65 + 0.2)
 
           ctx.fillStyle = `rgba(${charR}, ${charG}, ${charB}, ${charAlpha})`
           ctx.fillText(glyph, posX, posY)
@@ -294,7 +293,7 @@ export function AsciiBanner({
         loading="eager"
         fetchPriority="high"
         sizes="(min-width: 768px) 720px, 100vw"
-        className="object-cover object-[center_40%]"
+        className="object-cover object-[center_42%]"
       />
 
       {/* 2. Structured Matrix Scanline ASCII Layer */}

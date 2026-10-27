@@ -1,21 +1,20 @@
-import Image from "next/image"
 import Script from "next/script"
 
-import { GalleryVideo } from "@/components/gallery-video"
 import { SectionSeparator } from "@/components/section-separator"
 import { SITE_INFO } from "@/config/site"
 import { createPageMetadata } from "@/lib/seo"
-import { cn } from "@/lib/utils"
 
-const title = "AI & Software Project Gallery"
+import { GalleryGrid, type GalleryItem } from "./gallery-grid"
+
+const title = "Gallery & Moments"
 const description =
-  "A look at my AI projects, hackathons, technical events, and the software work behind them."
+  "Documentation of my internship at Bank BJB, national cybersecurity competition awards (Rise The Ranger 2 Satsiber TNI & NCS APTIKOM), and university achievements."
 const keywords = [
-  "Firdaus Khotibul Zickrian gallery",
-  "zickrian portfolio gallery",
-  "AI project showcase",
-  "machine learning project gallery",
-  "software engineering portfolio",
+  "Surya Aji Andriantoro gallery",
+  "Bank BJB internship",
+  "Rise The Ranger 2 Satsiber TNI 2026",
+  "Nusantara Cyber Security APTIKOM 2025",
+  "Outstanding Student of the Year IIB Darmajaya",
 ]
 
 export const metadata = createPageMetadata({
@@ -25,51 +24,77 @@ export const metadata = createPageMetadata({
   keywords,
 })
 
-type GalleryItem = {
-  src: string
-  title: string
-  date: string
-  description?: string
-  highlight?: string
-  type?: "image" | "video"
-  aspect?: "square" | "wide"
-}
-
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    src: "/image/basee.webp",
-    title: "Base Realms Hackathon Showcase",
+    src: "/gallery/magang-bank-bjb.jpg",
+    title: "IT Support Internship · Bank BJB Operations Bureau",
+    titleId: "Magang IT Support · Biro Operasional Bank BJB",
+    date: "2025 - 2026",
+    aspect: "landscape",
+    objectPosition: "object-[center_25%]",
+    fullWidth: true,
+    description:
+      "Completed an IT Support internship at Bank BJB KC Bandar Lampung (Operations Bureau), handling daily banking IT operations, hardware diagnostics, network troubleshooting, and endpoint system configuration.",
+    descriptionId:
+      "Menyelesaikan magang sebagai IT Support di Bank BJB KC Bandar Lampung (Biro Operasional), menangani dukungan teknis operasional perbankan harian, diagnostik hardware, troubleshooting jaringan, dan konfigurasi sistem.",
+    highlight: "Bank BJB KC Bandar Lampung · Operations Bureau",
+    highlightId: "Bank BJB KC Bandar Lampung · Biro Operasional",
+  },
+  {
+    src: "/gallery/juara-aptikom-2025.jpg",
+    title: "2nd Place National CTF · NCS APTIKOM 2025",
+    titleId: "Juara 2 Nasional CTF · NCS APTIKOM 2025",
     date: "2025",
+    aspect: "square",
+    objectPosition: "object-[center_35%]",
     description:
-      "On-stage presentation and live gameplay demonstration of Base Realms at the Coinbase Hackathon Indonesia 2025, introducing an onchain RPG with seamless QR onboarding.",
-    highlight: "Top 5 Finalist · Coinbase Hackathon",
+      "Awarded 2nd Place National Capture The Flag (CTF), 2nd Place Cluster, Best Performance, and The Best Team Lampung Province at Nusantara Cyber Security (NCS) RAKORNAS APTIKOM 2025.",
+    descriptionId:
+      "Meraih Juara 2 Nasional Capture The Flag (CTF), Juara 2 Kategori Klaster, Best Performance, dan Tim Terbaik Provinsi Lampung pada kompetisi Nusantara Cyber Security (NCS) RAKORNAS APTIKOM 2025.",
+    highlight: "National Cybersecurity Competition · APTIKOM 2025",
+    highlightId: "Kompetisi Keamanan Siber Nasional · APTIKOM 2025",
   },
   {
-    src: "https://res.cloudinary.com/dujp9ydkx/video/upload/WhatsApp_Video_2026-05-11_at_13.12.10_pmvmgx",
-    title: "FIK Preneur Week · Udinus",
-    date: "2024",
-    type: "video",
+    src: "/gallery/mahasiswa-berprestasi-darmajaya.jpg",
+    title: "Outstanding Student of the Year · IIB Darmajaya",
+    titleId: "Mahasiswa Berprestasi · IIB Darmajaya",
+    date: "2026",
+    aspect: "square",
+    objectPosition: "object-[center_38%]",
     description:
-      "Project pitching and technology showcase session at FIK Preneur Week (Venture Ignition), presenting student-built digital product innovation at Universitas Dian Nuswantoro.",
-    highlight: "Venture Ignition · Pitching Showcase",
+      "Recognized as Outstanding Student of the Year 2025/2026 at the Institute of Informatics and Business (IIB) Darmajaya for achievements in national cybersecurity competitions and academic research.",
+    descriptionId:
+      "Dinobatkan sebagai Mahasiswa Berprestasi (Outstanding Student of the Year) 2025/2026 di Institut Informatika dan Bisnis (IIB) Darmajaya atas prestasi kompetisi keamanan siber nasional dan publikasi riset ilmiah.",
+    highlight: "University Award · IIB Darmajaya 2025/2026",
+    highlightId: "Penghargaan Kampus · IIB Darmajaya 2025/2026",
   },
   {
-    src: "/image/picture1.webp",
-    title: "Tech Sharing for High School Students",
-    date: "2024",
-    aspect: "wide",
+    src: "/gallery/rise-the-ranger-2-stage.jpg",
+    title: "4th / First Runner Up · Rise The Ranger 2 (Satsiber TNI)",
+    titleId: "Juara Harapan 1 · Rise The Ranger 2 (Satsiber TNI)",
+    date: "2026",
+    aspect: "square",
+    objectPosition: "object-[center_30%]",
     description:
-      "Interactive tech sharing and mentoring session with high school students, introducing modern software engineering, AI tooling, and future career pathways in technology.",
-    highlight: "Mentorship & Tech Education",
+      "Achieved 4th Place / First Runner Up nationwide in the Rise The Ranger 2 Incident Response competition organized by Satuan Siber (Satsiber) TNI 2026.",
+    descriptionId:
+      "Meraih Juara Harapan 1 (4th Place / First Runner Up) tingkat nasional pada kompetisi Rise The Ranger 2 Incident Response yang diselenggarakan oleh Satuan Siber (Satsiber) TNI 2026.",
+    highlight: "National Incident Response · Satsiber TNI 2026",
+    highlightId: "Incident Response Nasional · Satsiber TNI 2026",
   },
   {
-    src: "/image/btng.webp",
-    title: "BTNG: Mobile Development Course",
-    date: "2024",
-    aspect: "wide",
+    src: "/gallery/rise-the-ranger-2-competition.jpg",
+    title: "Live Incident Response Final · Rise The Ranger 2",
+    titleId: "Babak Final Incident Response · Rise The Ranger 2",
+    date: "2026",
+    aspect: "square",
+    objectPosition: "object-center",
     description:
-      "Completing the intensive Basic Training for Next Generation (BTNG) mobile development track, focusing on hands-on application building and collaborative engineering.",
-    highlight: "Basic Training for Next Generation · Mobile Dev",
+      "Representing IIB Darmajaya during the live final round of Rise The Ranger 2 Satsiber TNI 2026, performing real-time cyber incident response, digital forensics, and defense investigation.",
+    descriptionId:
+      "Mewakili IIB Darmajaya pada babak final langsung Rise The Ranger 2 Satsiber TNI 2026 dalam penanganan insiden siber (incident response), forensik digital, dan investigasi pertahanan sistem.",
+    highlight: "Final Round · Rise The Ranger 2 Satsiber TNI",
+    highlightId: "Babak Final · Rise The Ranger 2 Satsiber TNI",
   },
 ]
 
@@ -86,16 +111,12 @@ function getGalleryJsonLd() {
       "@id": `${SITE_INFO.url}/#website`,
     },
     associatedMedia: GALLERY_ITEMS.map((item) => ({
-      "@type": item.type === "video" ? "VideoObject" : "ImageObject",
+      "@type": "ImageObject",
       name: item.title,
       contentUrl: item.src.startsWith("http")
         ? item.src
         : `${SITE_INFO.url}${item.src}`,
       uploadDate: item.date,
-      thumbnailUrl:
-        item.type === "video"
-          ? `${SITE_INFO.url}/image/btng-poster-v1.webp`
-          : undefined,
     })),
   }
 }
@@ -113,84 +134,9 @@ export default function GalleryPage() {
       />
       <SectionSeparator />
       <div className="relative z-1 -mt-px border-x border-t border-line bg-card max-md:border-x-0">
-        <div className="grid grid-cols-1 gap-px border-b border-line bg-line sm:grid-cols-2">
-          {GALLERY_ITEMS.map((item, index) => (
-            <GalleryCard key={item.src} item={item} eager={index < 2} />
-          ))}
-          {GALLERY_ITEMS.length % 2 === 1 && (
-            <div className="hidden min-h-62.5 flex-col items-center justify-center bg-card p-6 select-none sm:flex">
-              <span className="font-handwritten text-3xl font-medium tracking-wider text-muted-foreground">
-                Still cooking
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Butts straight against the last row's rule, with no gap - that rule
-            becomes the band's top edge and closes the box, which is what the
-            home page's sections do. A spacer here left the band floating. */}
+        <GalleryGrid items={GALLERY_ITEMS} />
         <SectionSeparator sides={false} />
       </div>
     </>
-  )
-}
-
-function GalleryCard({ item, eager }: { item: GalleryItem; eager?: boolean }) {
-  return (
-    <div className="flex flex-col bg-card p-3.5 sm:p-4">
-      <div
-        className={cn(
-          "group/media relative overflow-hidden rounded-xl select-none",
-          item.aspect === "wide" ? "aspect-2/1" : "aspect-square"
-        )}
-      >
-        {item.type === "video" ? (
-          <GalleryVideo
-            src={item.src}
-            poster="/image/btng-poster-v1.webp"
-            title={item.title}
-            className="absolute inset-0 size-full object-cover object-[center_30%]"
-          />
-        ) : (
-          <Image
-            src={item.src}
-            alt={item.title}
-            fill
-            sizes="(min-width: 768px) 360px, calc(100vw - 16px)"
-            loading={eager ? "eager" : "lazy"}
-            fetchPriority={eager ? "high" : "auto"}
-            quality={75}
-            // Matches the lift the project cards already have, so the two grids
-            // respond to the pointer the same way.
-            className="object-cover transition-transform duration-500 ease-out group-hover/media:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/media:scale-100"
-          />
-        )}
-        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
-      </div>
-
-      <div className="mt-3 flex flex-1 flex-col justify-between gap-2.5 px-0.5">
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-baseline justify-between gap-2">
-            <h3 className="line-clamp-1 text-sm font-semibold tracking-tight text-foreground">
-              {item.title}
-            </h3>
-            <span className="shrink-0 font-mono text-xs text-muted-foreground">
-              {item.date}
-            </span>
-          </div>
-          {item.description && (
-            <p className="line-clamp-3 text-xs leading-relaxed text-muted-foreground">
-              {item.description}
-            </p>
-          )}
-        </div>
-
-        {item.highlight && (
-          <span className="mt-auto font-mono text-[11px] text-muted-foreground/80">
-            {item.highlight}
-          </span>
-        )}
-      </div>
-    </div>
   )
 }

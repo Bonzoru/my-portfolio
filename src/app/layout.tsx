@@ -22,7 +22,7 @@ const SpeedInsights =
       )
     : null
 
-const fallbackProfileTitle = `${USER.displayName} | AI & Machine Learning Engineer`
+const fallbackProfileTitle = `${USER.displayName} | Web Developer, Cybersecurity & AI Engineer`
 const profileTitle = USER.seoTitle ?? fallbackProfileTitle
 const profileDescription = USER.seoDescription ?? USER.bio
 
@@ -63,8 +63,8 @@ function getProfilePageJsonLd(): WithContext<ProfilePage> {
     alumniOf: [
       {
         "@type": "CollegeOrUniversity",
-        name: "Universitas Dian Nuswantoro",
-        url: "https://dinus.ac.id",
+        name: "Institute of Informatics and Business (IIB) Darmajaya",
+        url: "https://darmajaya.ac.id",
       },
     ],
     worksFor: USER.jobs.map((job) => ({
@@ -187,10 +187,6 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  // The on-screen keyboard resizes the visual viewport only, so it leaves both
-  // the layout viewport and `dvh` alone - the floating dock stays put while
-  // typing instead of being shoved up over the chat panel's own input. Stated
-  // explicitly rather than relied on as a default.
   interactiveWidget: "resizes-visual",
   themeColor: META_THEME_COLORS.dark,
 }
@@ -203,12 +199,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* No preconnect/dns-prefetch here on purpose: the GitHub contributions
-            API is only ever called server-side (see data/github-contributions),
-            and cdn.simpleicons.org is gone since all icons are inline SVG. The
-            browser never opens a connection to either, so hinting them just
-            wasted a connection slot and tripped Lighthouse's unused-preconnect
-            audit. */}
         <Script
           id="theme-color-bootstrap"
           strategy="beforeInteractive"
@@ -227,10 +217,6 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* Decorative display face, used only by panel titles and the footer
-            colophon - all below the fold. Preloaded so it never swaps in late,
-            but at low priority so its 73 KB never competes with the LCP
-            banner on a mobile connection. */}
         <link
           rel="preload"
           href="/fonts/caveat-latin.woff2"

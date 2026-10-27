@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+  <rect width="120" height="80" rx="12" fill="#ffffff"/>
+  <!-- Cisco Bridge Bars -->
+  <g fill="#049FD9">
+    <rect x="16" y="26" width="5" height="14" rx="2.5"/>
+    <rect x="27" y="18" width="5" height="22" rx="2.5"/>
+    <rect x="38" y="10" width="5" height="32" rx="2.5"/>
+    <rect x="49" y="18" width="5" height="22" rx="2.5"/>
+    <rect x="60" y="26" width="5" height="14" rx="2.5"/>
+    <rect x="71" y="18" width="5" height="22" rx="2.5"/>
+    <rect x="82" y="10" width="5" height="32" rx="2.5"/>
+    <rect x="93" y="18" width="5" height="22" rx="2.5"/>
+    <rect x="104" y="26" width="5" height="14" rx="2.5"/>
+  </g>
+  <!-- CISCO Wordmark -->
+  <text x="60" y="64" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="#049FD9">CISCO</text>
+</svg>

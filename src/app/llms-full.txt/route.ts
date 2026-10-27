@@ -52,11 +52,11 @@ function buildLlmsFullTxt(): string {
   }).join("\n\n")
 
   const awardSections = AWARDS.map((award) => {
-    return `- **${award.title}** (${award.grade})\n  * Prize: ${award.prize}\n  * Date: ${award.date}\n  * Details: ${(award.description ?? "").replace(/\n+/g, " ")}\n  * Reference: ${award.referenceLink}`
+    return `- **${award.title}** (${award.grade})\n  * Prize: ${award.prize}\n  * Date: ${award.date}\n  * Details: ${(award.description ?? "").replace(/\n+/g, " ")}`
   }).join("\n\n")
 
   const publicationSections = PUBLICATIONS.map((pub) => {
-    return `- **${pub.title}**\n  * Journal: ${pub.journal}\n  * Date: ${pub.date}\n  * URL: ${pub.url}\n  * Summary: ${pub.description}`
+    return `- **${pub.title}**\n  * Journal: ${pub.journal}\n  * Date: ${pub.date}\n  * Summary: ${pub.description}`
   }).join("\n\n")
 
   const techCategories = Array.from(
@@ -71,24 +71,20 @@ function buildLlmsFullTxt(): string {
     })
     .join("\n")
 
-  return `# Complete Knowledge Base — Firdaus Khotibul Zickrian
+  return `# Complete Knowledge Base — Surya Aji Andriantoro
 
-> Firdaus Khotibul Zickrian is an AI & Machine Learning Engineer and Computer Science scholar at Universitas Dian Nuswantoro (GPA 3.88/4.00) based in Indonesia. He specializes in practical machine learning systems, business process automation, ERP integrations, predictive analytics, and modern full-stack web applications.
+> Surya Aji Andriantoro is a Web Developer, Cybersecurity & AI Engineer, and Informatics Engineering graduate from the Institute of Informatics and Business (IIB) Darmajaya in Bandar Lampung, Indonesia. He specializes in offensive cybersecurity, full-stack web development, Web3 on-chain analytics, and applied machine learning.
 
 ---
 
 ## 1. Executive Summary & Profile
 
-- **Full Name**: Firdaus Khotibul Zickrian
-- **Role**: AI & Machine Learning Engineer / Full-Stack Developer / Data Scientist
-- **Location**: Semarang, Indonesia (Timezone: Asia/Jakarta, UTC+7)
+- **Full Name**: ${USER.displayName}
+- **Role**: ${USER.jobTitle}
+- **Location**: ${USER.address} (Timezone: ${USER.timeZone}, UTC+7)
 - **Email**: ${email}
-- **Phone**: ${USER.phone}
 - **Website**: ${baseUrl}
-- **LinkedIn**: https://linkedin.com/in/firdauskhotibulzickrian/
-- **GitHub**: https://github.com/zickrian
-- **Hugging Face**: https://huggingface.co/zickrian
-- **Medium**: https://medium.com/@zickriann
+- **LinkedIn**: https://www.linkedin.com/in/suryaajiandriantoro/
 - **Bio**: ${USER.bio}
 - **About**: ${USER.about}
 
@@ -96,28 +92,20 @@ function buildLlmsFullTxt(): string {
 
 ## 2. Education & Academic Background
 
-- **Institution**: Universitas Dian Nuswantoro (UDINUS), Semarang, Indonesia
-- **Degree**: Bachelor of Computer Science (S.Kom)
-- **Period**: 2023 – Present (Expected Graduation: October 2027)
-- **Cumulative GPA**: **3.88 / 4.00**
-- **Academic Progress**: Completed **129 of 144 credits** with consistent high distinction.
-- **Key Coursework**:
-  - Machine Learning & Deep Learning
-  - Data Mining & Knowledge Discovery
-  - Natural Language Processing & Computer Vision
-  - Distributed Systems & Database Management Systems
-  - Algorithm Analysis & Design
-  - Software Engineering & Agile Methodologies
+- **Institution**: Institute of Informatics and Business (IIB) Darmajaya, Bandar Lampung, Indonesia
+- **Degree**: Bachelor of Informatics Engineering (S.Kom)
+- **Period**: 2022 – 2026
+- **Honors**: Outstanding Student of the Year 2025/2026 at IIB Darmajaya
 
 ---
 
-## 3. Quantified Professional Experience & Leadership
+## 3. Professional Experience
 
 ${experienceSections}
 
 ---
 
-## 4. In-Depth Project Case Studies & Technical Architecture
+## 4. In-Depth Project Case Studies
 
 ${projectSections}
 
@@ -129,19 +117,19 @@ ${techStackSections}
 
 ---
 
-## 6. Honors, Hackathon Awards & National Distinctions
+## 6. Honors & National Cybersecurity Competition Awards
 
 ${awardSections}
 
 ---
 
-## 7. Research Publications & Scientific Papers
+## 7. Research Publications
 
 ${publicationSections}
 
 ---
 
-## 8. Professional Certifications (30+ Verified Credentials)
+## 8. Professional Certifications (${CERTIFICATIONS.length} Verified Credentials)
 
 ${certSections}
 
@@ -151,8 +139,7 @@ ${certSections}
 
 - **Direct Inquiries**: Use the interactive contact modal at ${baseUrl}
 - **Email**: ${email}
-- **GitHub**: https://github.com/zickrian
-- **LinkedIn**: https://linkedin.com/in/firdauskhotibulzickrian/
+- **LinkedIn**: https://www.linkedin.com/in/suryaajiandriantoro/
 `
 }
 

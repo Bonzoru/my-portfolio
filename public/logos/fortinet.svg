@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+  <rect width="120" height="80" rx="12" fill="#ffffff"/>
+  <!-- Fortinet Icon Grid (3x3 O-ring blocks) -->
+  <g fill="#EE3124">
+    <!-- Top Row -->
+    <rect x="33" y="12" width="14" height="9" rx="2"/>
+    <rect x="53" y="12" width="14" height="9" rx="2"/>
+    <rect x="73" y="12" width="14" height="9" rx="2"/>
+    <!-- Middle Row (Left & Right) -->
+    <rect x="33" y="25" width="14" height="9" rx="2"/>
+    <rect x="73" y="25" width="14" height="9" rx="2"/>
+    <!-- Bottom Row -->
+    <rect x="33" y="38" width="14" height="9" rx="2"/>
+    <rect x="53" y="38" width="14" height="9" rx="2"/>
+    <rect x="73" y="38" width="14" height="9" rx="2"/>
+  </g>
+  <!-- FORTINET Wordmark -->
+  <text x="60" y="66" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="16" letter-spacing="1.5" fill="#18181B">FORTINET</text>
+</svg>

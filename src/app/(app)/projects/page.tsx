@@ -6,15 +6,17 @@ import { PROJECTS } from "@/features/portfolio/data/projects"
 import { ProjectsPageContent } from "@/features/projects/components/projects-page-content"
 import { createPageMetadata } from "@/lib/seo"
 
-const title = "AI & Machine Learning Projects"
+const title = "Web, Web3 & Machine Learning Projects"
 const description =
-  "A selection of projects I've built across AI, machine learning, data, and full-stack development."
+  "A selection of projects I've built across full-stack web development, Web3 on-chain analytics, Python automation, and machine learning research."
 const keywords = [
-  "Firdaus Khotibul Zickrian projects",
-  "zickrian projects",
-  "AI projects",
+  "Surya Aji Andriantoro projects",
+  "sryaaji projects",
+  "Xyro Terminal",
+  "Crypto Market Information Aggregator",
+  "Seismic Tsunami Predictor",
+  "Web3 analytics projects",
   "machine learning projects",
-  "full-stack development projects",
 ]
 
 function getProjectsJsonLd() {
@@ -67,10 +69,6 @@ export default function ProjectsPage() {
       <SectionSeparator />
       <div className="relative z-1 -mt-px border-x border-t border-line bg-card max-md:border-x-0">
         <ProjectsPageContent projects={PROJECTS} />
-
-        {/* Butts straight against the last row's rule, with no gap - that rule
-            becomes the band's top edge and closes the box, which is what the
-            home page's sections do. A spacer here left the band floating. */}
         <SectionSeparator sides={false} />
       </div>
     </>

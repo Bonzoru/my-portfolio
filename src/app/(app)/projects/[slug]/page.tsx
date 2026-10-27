@@ -28,13 +28,13 @@ export async function generateMetadata({
   }
 
   const description = project.seoDescription ?? project.tagline
-  const pageTitle = project.seoTitle ?? `${project.title} | Zickrian`
+  const pageTitle = project.seoTitle ?? `${project.title} | ${USER.displayName}`
   const keywords = [
     project.title,
     project.category,
     ...project.skills,
-    "Firdaus Khotibul Zickrian",
-    "zickrian",
+    USER.displayName,
+    USER.username,
   ]
 
   return {

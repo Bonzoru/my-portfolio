@@ -67,7 +67,7 @@ export function AwardItem({
                       suppressHydrationWarning
                       dateTime={new Date(award.date).toISOString()}
                     >
-                      {format(new Date(award.date), "MM.yyyy")}
+                      {format(new Date(award.date), "yyyy")}
                     </time>
                   </dd>
                 </dl>

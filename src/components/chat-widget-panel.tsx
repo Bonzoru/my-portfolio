@@ -964,7 +964,7 @@ export function ChatWidgetPanel() {
       await new Promise((resolve) => setTimeout(resolve, 600))
 
       await injectAssistantMessage(
-        "Waktu ngobrolku sudah habis nih! Kalau masih ada pertanyaan, yuk langsung DM Zickrian lewat tombol **Direct Message** di atas! 👆"
+        "Waktu ngobrolku sudah habis nih! Kalau masih ada pertanyaan, yuk langsung DM Surya Aji lewat tombol **Direct Message** di atas! 👆"
       )
       return
     }
@@ -1074,8 +1074,8 @@ export function ChatWidgetPanel() {
       }
       tooldescription={
         emailFlow.step === "filling_form"
-          ? "Send a direct contact email inquiry to Firdaus Khotibul Zickrian"
-          : "Ask questions about Firdaus Khotibul Zickrian's skills, projects, experience, or background"
+          ? "Send a direct contact email inquiry to Surya Aji Andriantoro"
+          : "Ask questions about Surya Aji Andriantoro's skills, projects, experience, or background"
       }
       onSubmit={(e) => {
         e.preventDefault()
@@ -1156,8 +1156,8 @@ export function ChatWidgetPanel() {
             name={emailFlow.step === "filling_form" ? "message" : "query"}
             toolparamdescription={
               emailFlow.step === "filling_form"
-                ? "Message body or inquiry to send to Firdaus"
-                : "Natural language question about Firdaus Khotibul Zickrian's portfolio or background"
+                ? "Message body or inquiry to send to Surya Aji"
+                : "Natural language question about Surya Aji Andriantoro's portfolio or background"
             }
             value={
               emailFlow.step === "filling_form" ? emailFlow.rawMessage : input
@@ -1336,7 +1336,7 @@ export function ChatWidgetPanel() {
               onClick={() => setBudgetOpen(!budgetOpen)}
             >
               <span className="flex items-center gap-1.5 font-handwritten text-[1.15rem] tracking-wide text-foreground select-none">
-                Zickrian
+                Surya Aji
                 <ChevronDownIcon
                   className={cn(
                     "size-4 text-muted-foreground transition-transform duration-200",

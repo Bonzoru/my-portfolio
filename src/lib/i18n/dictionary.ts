@@ -137,7 +137,7 @@ const dictionary = {
       editEmail: "Edit Email",
       sendEmail: "Send Email",
       sending: "Sending...",
-      sendEmailToZickrian: "Send Email to Zickrian",
+      sendEmailToZickrian: "Send Email to Surya Aji",
       yourName: "Your name",
       yourEmail: "Your email",
       writeMessageHere: "Write your message here...",
@@ -171,7 +171,7 @@ const dictionary = {
       sendingLimitReached: (limit: number, wait: string) =>
         `⏳ **Sending limit reached.**\n\nYou've already sent ${limit} emails in the last hour. Try again in **${wait}**.`,
       emailSentSuccess: (name: string, email: string, remaining: number) =>
-        `✅ **Email sent successfully!**\n\nThe message from **${name}** has been sent to Zickrian. You will receive a confirmation at **${email}**.\n\nThanks for reaching out! 🙌${remaining > 0 ? `\n\n🚀 *Remaining email quota: **${remaining}x** in this hour.*` : ""}`,
+        `✅ **Email sent successfully!**\n\nThe message from **${name}** has been sent to Surya Aji. You will receive a confirmation at **${email}**.\n\nThanks for reaching out! 🙌${remaining > 0 ? `\n\n🚀 *Remaining email quota: **${remaining}x** in this hour.*` : ""}`,
     },
   },
   id: {
@@ -305,7 +305,7 @@ const dictionary = {
       editEmail: "Ubah Email",
       sendEmail: "Kirim Email",
       sending: "Mengirim...",
-      sendEmailToZickrian: "Kirim Email ke Zickrian",
+      sendEmailToZickrian: "Kirim Email ke Surya Aji",
       yourName: "Nama kamu",
       yourEmail: "Email kamu",
       writeMessageHere: "Tulis pesanmu di sini...",
@@ -339,7 +339,7 @@ const dictionary = {
       sendingLimitReached: (limit: number, wait: string) =>
         `⏳ **Batas pengiriman tercapai.**\n\nKamu sudah mengirim ${limit} email dalam satu jam terakhir. Coba lagi dalam **${wait}**.`,
       emailSentSuccess: (name: string, email: string, remaining: number) =>
-        `✅ **Email berhasil terkirim!**\n\nPesan dari **${name}** telah dikirim ke Zickrian. Kamu akan menerima konfirmasi di **${email}**.\n\nTerima kasih sudah menghubungi! 🙌${remaining > 0 ? `\n\n🚀 *Sisa kuota email: **${remaining}x** dalam satu jam ini.*` : ""}`,
+        `✅ **Email berhasil terkirim!**\n\nPesan dari **${name}** telah dikirim ke Surya Aji. Kamu akan menerima konfirmasi di **${email}**.\n\nTerima kasih sudah menghubungi! 🙌${remaining > 0 ? `\n\n🚀 *Sisa kuota email: **${remaining}x** dalam satu jam ini.*` : ""}`,
     },
   },
 } as const satisfies Record<Language, unknown>

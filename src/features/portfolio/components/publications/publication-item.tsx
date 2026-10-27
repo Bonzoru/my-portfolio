@@ -1,7 +1,7 @@
 "use client"
 
 import { format } from "date-fns"
-import { ArrowUpRightIcon, BookOpenIcon } from "lucide-react"
+import { BookOpenIcon } from "lucide-react"
 
 import { Separator } from "@/components/ui/separator"
 import type { Publication } from "@/features/portfolio/types/publications"
@@ -18,14 +18,11 @@ export function PublicationItem({
   const { t } = useTranslation()
 
   return (
-    <a
+    <div
       className={cn(
         "group flex items-center pr-2 transition-colors duration-200 ease-out hover:bg-accent-muted",
         className
       )}
-      href={publication.url}
-      target="_blank"
-      rel="noopener noreferrer nofollow"
     >
       <div className="flex w-15 shrink-0 items-center justify-center">
         <div
@@ -46,7 +43,7 @@ export function PublicationItem({
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <dl>
             <dt className="sr-only">{t.publications.journal}</dt>
-            <dd>@{publication.journal}</dd>
+            <dd>{publication.journal}</dd>
           </dl>
 
           <Separator
@@ -67,8 +64,6 @@ export function PublicationItem({
           </dl>
         </div>
       </div>
-
-      <ArrowUpRightIcon className="size-4 shrink-0 text-muted-foreground transition-[transform,color] duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-hover:translate-y-0" />
-    </a>
+    </div>
   )
 }

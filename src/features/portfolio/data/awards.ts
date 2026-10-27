@@ -2,58 +2,66 @@ import type { Award } from "../types/awards"
 
 export const AWARDS: Award[] = [
   {
-    id: "pijak-ibm-skillsbuild-best-capstone-2026",
-    prize: "Best Capstone Project",
-    title:
-      "Best Capstone Project – Pijak in Collaboration with IBM Skillsbuild",
-    date: "2026-07-20",
+    id: "rtr-satsiber-tni-2026",
+    prize: "4th / First Runner Up",
+    title: "Rise The Ranger 2 Incident Response – Satsiber TNI 2026",
+    date: "2026-08-01",
     grade: "National",
-    referenceLink: "https://www.dicoding.com/",
-    description: `Awarded Best Capstone Project at the Pijak in collaboration with IBM Skillsbuild AI Engineer program, selected as one of only 5 winning teams out of 120+ capstone teams.
-
-- Project title: **Custora – Customer Intelligence for Retention Decisions** (Team PJK-GM015).
-- Built an AI-powered customer intelligence system focused on predicting and improving customer retention.
-- Certificate No: PIJAK/CAPS/XXVI-07/APC007D6Y0298.`,
-    descriptionId: `Meraih penghargaan Best Capstone Project pada program AI Engineer Pijak bekerja sama dengan IBM Skillsbuild, terpilih sebagai salah satu dari hanya 5 tim pemenang dari 120+ tim capstone.
-
-- Judul proyek: **Custora – Customer Intelligence for Retention Decisions** (Tim PJK-GM015).
-- Membangun sistem customer intelligence berbasis AI yang berfokus pada prediksi dan peningkatan retensi pelanggan.
-- No. Sertifikat: PIJAK/CAPS/XXVI-07/APC007D6Y0298.`,
+    description: `Achieved **4th Place / First Runner Up** nationwide in the **Rise The Ranger 2 Incident Response** competition organized by **Satuan Siber (Satsiber) TNI 2026**.`,
+    descriptionId: `Meraih **Juara Harapan 1 (4th / First Runner Up)** tingkat nasional pada kompetisi **Rise The Ranger 2 Incident Response** yang diselenggarakan oleh **Satuan Siber (Satsiber) TNI 2026**.`,
   },
   {
-    id: "pijak-ibm-skillsbuild-lulusan-terbaik-2026",
-    prize: "Lulusan Terbaik (Best Graduate)",
-    title:
-      "Best Graduate – AI Engineer, Pijak in Collaboration with IBM Skillsbuild",
-    date: "2026-07-20",
+    id: "ncs-aptikom-2026",
+    prize: "2nd Place National · Best Team Lampung",
+    title: "Nusantara Cyber Security (NCS) APTIKOM 2026",
+    date: "2026-07-01",
     grade: "National",
-    referenceLink: "https://www.dicoding.com/",
-    description: `Graduated as Lulusan Terbaik (Best Graduate) from the Pijak in collaboration with IBM Skillsbuild AI Engineer program, ranking in the top 10% out of more than 670 participants.
-
-- Completed comprehensive AI Engineer training covering machine learning, deep learning, and AI application development.
-- Certificate No: PIJAK/DIST/XXVI-07/APC007D6Y0298.`,
-    descriptionId: `Lulus sebagai Lulusan Terbaik (Best Graduate) dari program AI Engineer Pijak bekerja sama dengan IBM Skillsbuild, menempati 10% teratas dari lebih dari 670 peserta.
-
-- Menyelesaikan pelatihan AI Engineer yang komprehensif meliputi machine learning, deep learning, dan pengembangan aplikasi AI.
-- No. Sertifikat: PIJAK/DIST/XXVI-07/APC007D6Y0298.`,
+    description: `Awarded **2nd Place National Best Team Lampung Province** at the **Nusantara Cyber Security (NCS) APTIKOM 2026** competition.`,
+    descriptionId: `Meraih penghargaan **Juara 2 Nasional Tim Terbaik Provinsi Lampung (2nd Place National Best Team Lampung Province)** pada kompetisi **Nusantara Cyber Security (NCS) APTIKOM 2026**.`,
   },
   {
-    id: "coinbase-hackathon-indonesia-2025-base-track",
-    prize: "Top 5 National Finalist",
-    title:
-      "Top 5 National Finalist of Base Track at Coinbase Hackathon Indonesia 2025",
-    date: "2026-01-01",
+    id: "outstanding-student-darmajaya-2025-2026",
+    prize: "Outstanding Student of the Year",
+    title: "Outstanding Student of the Year 2025/2026 – IIB Darmajaya",
+    date: "2026-05-01",
+    grade: "University",
+    description: `Recognized as **Outstanding Student of the Year 2025/2026** at **Darmajaya Institute of Informatics and Business (IIB Darmajaya)** for academic, research, and national cybersecurity competition achievements.`,
+    descriptionId: `Dinobatkan sebagai **Mahasiswa Berprestasi (Outstanding Student of the Year) 2025/2026** di **Institut Informatika dan Bisnis (IIB) Darmajaya** atas pencapaian akademik, riset, dan kompetisi keamanan siber tingkat nasional.`,
+  },
+  {
+    id: "ncs-aptikom-2025-ctf-2nd",
+    prize: "2nd Place National CTF",
+    title: "Nusantara Cyber Security (NCS) APTIKOM 2025 – National CTF",
+    date: "2025-11-01",
     grade: "National",
-    referenceLink: "https://baserealms.app/",
-    description: `Recognized as a Top 5 National Finalist in the Base Track at Coinbase Hackathon Indonesia 2025 with Base Realms, a 16-bit RPG battle game focused on Web3 onboarding through familiar Indonesian QRIS payments.
-
-- Built with team Terra Bit (Firdaus Khotibul Zickrian & Gagah Athallah Fatha).
-- Implemented blockchain game mechanics using Base, Solidity, ERC-721, and ERC-1155 standards.
-- Designed QRIS-based onboarding to make crypto entry more accessible for non-crypto users.`,
-    descriptionId: `Meraih pengakuan sebagai Top 5 National Finalist pada Base Track di Coinbase Hackathon Indonesia 2025 bersama Base Realms, sebuah game battle RPG 16-bit yang berfokus pada onboarding Web3 melalui pembayaran QRIS yang familiar bagi masyarakat Indonesia.
-
-- Dibangun bersama tim Terra Bit (Firdaus Khotibul Zickrian & Gagah Athallah Fatha).
-- Mengimplementasikan mekanisme game blockchain menggunakan standar Base, Solidity, ERC-721, dan ERC-1155.
-- Merancang onboarding berbasis QRIS agar entri ke dunia crypto lebih mudah diakses oleh pengguna non-crypto.`,
+    description: `Won **2nd Place National Capture The Flag (CTF)** at the **Nusantara Cyber Security (NCS) APTIKOM 2025** competition.`,
+    descriptionId: `Meraih **Juara 2 Nasional Capture The Flag (CTF)** pada kompetisi **Nusantara Cyber Security (NCS) APTIKOM 2025**.`,
+  },
+  {
+    id: "ncs-aptikom-2025-best-performance",
+    prize: "Best Performance",
+    title: "Nusantara Cyber Security (NCS) APTIKOM 2025 – Best Performance",
+    date: "2025-11-01",
+    grade: "National",
+    description: `Received the **Best Performance** award at the **Nusantara Cyber Security (NCS) APTIKOM 2025** national competition.`,
+    descriptionId: `Meraih penghargaan **Best Performance** pada kompetisi nasional **Nusantara Cyber Security (NCS) APTIKOM 2025**.`,
+  },
+  {
+    id: "ncs-aptikom-2025-cluster-2nd",
+    prize: "2nd Place Cluster",
+    title: "Nusantara Cyber Security (NCS) APTIKOM 2025 – Cluster Category",
+    date: "2025-11-01",
+    grade: "National",
+    description: `Achieved **2nd Place Cluster** at the **Nusantara Cyber Security (NCS) APTIKOM 2025** competition.`,
+    descriptionId: `Meraih **Juara 2 Kategori Klaster (2nd Place Cluster)** pada kompetisi **Nusantara Cyber Security (NCS) APTIKOM 2025**.`,
+  },
+  {
+    id: "ncs-aptikom-2025-best-team-lampung",
+    prize: "The Best Team Lampung Province",
+    title: "Nusantara Cyber Security (NCS) APTIKOM 2025 – Best Provincial Team",
+    date: "2025-11-01",
+    grade: "National",
+    description: `Named **The Best Team Lampung Province** at the **Nusantara Cyber Security (NCS) APTIKOM 2025** competition.`,
+    descriptionId: `Dinobatkan sebagai **Tim Terbaik Provinsi Lampung (The Best Team Lampung Province)** pada ajang **Nusantara Cyber Security (NCS) APTIKOM 2025**.`,
   },
 ]

@@ -121,6 +121,7 @@ export const getGitHubContributions = unstable_cache(
   // 1. Primary: jogruber API for full multi-year history.
   // 2. Fallback: official GitHub public profile HTML endpoint for rock-solid 1-year history.
   async () => {
+    if (!GITHUB_USERNAME) return []
     const jogruberResult = await fetchFromJogruber(GITHUB_USERNAME)
     if (jogruberResult) {
       return jogruberResult

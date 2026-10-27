@@ -1,12 +1,18 @@
 {
-  "short_name": "Firdaus",
-  "name": "Firdaus Khotibul Zickrian",
-  "description": "Portfolio of Firdaus Khotibul Zickrian, an Indonesia-based Computer Science student focused on AI engineering, machine learning, and full-stack development.",
+  "short_name": "Surya Aji",
+  "name": "Surya Aji Andriantoro",
+  "description": "Portfolio of Surya Aji Andriantoro — Web Developer, Cybersecurity & AI Engineer.",
   "icons": [
     {
-      "src": "/icons/seo.webp",
-      "sizes": "900x900",
-      "type": "image/webp",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
@@ -14,6 +20,6 @@
   "start_url": "/",
   "display": "standalone",
   "scope": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff"
+  "background_color": "#000000",
+  "theme_color": "#000000"
 }

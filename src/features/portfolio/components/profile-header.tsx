@@ -5,18 +5,12 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 
 import { AsciiBanner } from "@/components/ascii-banner"
-import { GitHubStars } from "@/components/github-stars"
 import { VerifiedIcon } from "@/features/portfolio/components/verified-icon"
-import type { GitHubRepoStats } from "@/features/portfolio/data/github-repo"
 import { SOCIAL_LINKS } from "@/features/portfolio/data/social-links"
 import { USER } from "@/features/portfolio/data/user"
 import { useTranslation } from "@/lib/i18n/use-translation"
 
-export function ProfileHeader({
-  repoStats,
-}: {
-  repoStats?: GitHubRepoStats | null
-}) {
+export function ProfileHeader() {
   const { l } = useTranslation()
   const pathname = usePathname()
   const isProjectDetail = Boolean(
@@ -30,7 +24,7 @@ export function ProfileHeader({
       className="relative z-1 border-x border-b border-line bg-card max-md:border-x-0"
     >
       <div className="relative h-44 overflow-hidden border-b border-line sm:h-56">
-        <AsciiBanner src="/bannerfield.webp" alt="Profile Banner" />
+        <AsciiBanner src="/banner-header.webp" alt="Profile Banner" />
       </div>
 
       <div className="relative px-5 pb-5 sm:px-6 sm:pb-6">
@@ -42,14 +36,9 @@ export function ProfileHeader({
               fill
               priority
               sizes="(min-width: 640px) 128px, 104px"
-              className="size-full object-cover object-[center_28%]"
+              className="size-full object-cover object-[center_20%]"
             />
           </div>
-
-          <GitHubStars
-            stargazersCount={repoStats?.stars ?? 0}
-            className="mb-1"
-          />
         </div>
 
         <div className="mt-3 min-w-0">
@@ -63,26 +52,6 @@ export function ProfileHeader({
                 aria-label="Verified profile"
                 role="img"
               />
-              <a
-                href="https://www.instagram.com/custompedia/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="PT Custompedia Creative Group"
-                aria-label="PT Custompedia Creative Group"
-                className="relative inline-flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-[4px] border border-[#cfd9de] bg-white p-[2px] shadow-2xs transition-transform hover:scale-105 dark:border-[#536471] sm:size-[22px] sm:rounded-[4.5px]"
-              >
-                {/* Same quality as the experience list renders it at, so both
-                    resolve to one optimised variant instead of fetching the
-                    identical 32px logo twice per page load. */}
-                <Image
-                  src="/logos/custompedia-logo.webp"
-                  alt="Custompedia"
-                  width={22}
-                  height={22}
-                  quality={85}
-                  className="size-full object-contain"
-                />
-              </a>
             </div>
           </div>
           <p className="mt-0.5 text-[15px] leading-5 text-muted-foreground">
@@ -110,7 +79,7 @@ export function ProfileHeader({
             className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
           >
             <Globe2 className="size-4" aria-hidden />
-            zickrian.dev
+            myporto-aji.vercel.app
           </a>
         </div>
 

@@ -1,82 +1,74 @@
 import type { User } from "@/features/portfolio/types/user"
 
 export const USER: User = {
-  firstName: "Firdaus",
-  lastName: "Khotibul Zickrian",
-  displayName: "Firdaus Khotibul Zickrian",
-  username: "zickrian",
+  firstName: "Surya Aji",
+  lastName: "Andriantoro",
+  displayName: "Surya Aji Andriantoro",
+  username: "sryaaji",
   gender: "male",
   pronouns: "he/him",
 
-  bio: "I'm Firdaus Khotibul Zickrian, an AI Engineer based in Indonesia building practical machine learning systems, data workflows, and modern full-stack web applications that turn ideas into impactful products.",
+  bio: "I'm an Informatics Engineering graduate whose current focus is evenly split across three core pillars: offensive cybersecurity, full-stack web development, and AI engineering. What I enjoy most is the synergy between these domains: simulating real-world cyberattacks to uncover vulnerabilities, building web interfaces that stay fast under real data, and wiring AI into workflows that remove actual manual effort. With an active track record in national and provincial cybersecurity competitions, I am used to tackling complex technical challenges both independently and in teams.",
   bioId:
-    "Saya Firdaus Khotibul Zickrian, seorang AI Engineer yang berbasis di Indonesia, membangun sistem machine learning yang praktis, alur kerja data, dan aplikasi web full-stack modern yang mengubah ide menjadi produk yang berdampak.",
+    "Saya lulusan Teknik Informatika dengan fokus utama yang terbagi secara seimbang pada tiga pilar inti: keamanan siber ofensif (offensive cybersecurity), pengembangan web full-stack, dan AI engineering. Hal yang paling saya sukai adalah sinergi di antara ketiga bidang ini: mensimulasikan serangan siber nyata untuk menemukan celah keamanan, membangun antarmuka web yang tetap cepat dengan data nyata, serta mengintegrasikan AI ke dalam alur kerja untuk menghilangkan pekerjaan manual. Dengan rekam jejak aktif di kompetisi keamanan siber tingkat nasional dan provinsi, saya terbiasa menyelesaikan tantangan teknis yang kompleks baik secara mandiri maupun di dalam tim.",
 
   flipSentences: [
-    "AI / ML Engineer",
-    "AI & Data Scientist",
-    "Full Stack Developer",
-    "Data Analyst",
+    "Web Developer",
+    "Cybersecurity & Penetration Tester",
+    "AI & Automation Engineer",
+    "Network Engineer",
   ],
   flipSentencesId: [
-    "AI / ML Engineer",
-    "AI & Data Scientist",
-    "Pengembang Full Stack",
-    "Analis Data",
+    "Web Developer",
+    "Cybersecurity & Penetration Tester",
+    "AI & Automation Engineer",
+    "Network Engineer",
   ],
 
-  address: "Indonesia",
-  email: "ZmlyZGF1c2tob3RpYnVsemlja3JpYW5AZ21haWwuY29t", // base64 of firdauskhotibulzickrian@gmail.com
-  phone: "+62 851-5548-7647",
-  website: "https://www.zickrian.dev",
+  address: "Bandar Lampung, Indonesia",
+  email: "c3VyeWFhamkyMzdAZ21haWwuY29t", // base64 of suryaaji237@gmail.com
+  phone: "",
+  website: "https://myporto-aji.vercel.app",
 
-  jobTitle: "AI & Machine Learning Engineer",
-  seoTitle: "Firdaus Khotibul Zickrian | AI & Machine Learning Engineer",
+  jobTitle: "Web Developer, Cybersecurity & AI Engineer",
+  seoTitle:
+    "Surya Aji Andriantoro | Web Developer, Cybersecurity & AI Engineer",
   seoDescription:
-    "I'm Firdaus Khotibul Zickrian, an AI and machine learning engineer from Indonesia. I build practical software, data products, and machine learning systems.",
+    "I'm an Informatics Engineering graduate whose current focus is evenly split across three core pillars: offensive cybersecurity, full-stack web development, and AI engineering.",
 
   jobs: [
     {
-      title: "AI Engineer Intern",
-      company: "PT Custompedia Creative Group",
-      website: "https://www.instagram.com/custompedia/",
-      experienceId: "custompedia",
+      title: "IT Support (Internship)",
+      company: "Bank BJB Operations Bureau",
+      website: "https://www.bankbjb.co.id/",
+      experienceId: "bjb",
     },
   ],
 
-  about: `I'm an AI Engineer based in Indonesia, specializing in building practical machine learning systems, data workflows, and modern full-stack web applications. I focus on developing reliable, end-to-end solutions that turn complex ideas into intuitive products designed for real-world impact.`,
-  aboutId: `Saya seorang AI Engineer yang berbasis di Indonesia, dengan spesialisasi dalam membangun sistem machine learning yang praktis, alur kerja data, dan aplikasi web full-stack modern. Saya fokus mengembangkan solusi end-to-end yang andal, yang mengubah ide-ide kompleks menjadi produk intuitif yang dirancang untuk memberikan dampak nyata.`,
+  about: `I'm an Informatics Engineering graduate whose current focus is evenly split across three core pillars: offensive cybersecurity, full-stack web development, and AI engineering. What I enjoy most is the synergy between these domains: simulating real-world cyberattacks to uncover vulnerabilities, building web interfaces that stay fast under real data, and wiring AI into workflows that remove actual manual effort. With an active track record in national and provincial cybersecurity competitions, I am used to tackling complex technical challenges both independently and in teams.`,
+  aboutId: `Saya lulusan Teknik Informatika dengan fokus utama yang terbagi secara seimbang pada tiga pilar inti: keamanan siber ofensif (offensive cybersecurity), pengembangan web full-stack, dan AI engineering. Hal yang paling saya sukai adalah sinergi di antara ketiga bidang ini: mensimulasikan serangan siber nyata untuk menemukan celah keamanan, membangun antarmuka web yang tetap cepat dengan data nyata, serta mengintegrasikan AI ke dalam alur kerja untuk menghilangkan pekerjaan manual. Dengan rekam jejak aktif di kompetisi keamanan siber tingkat nasional dan provinsi, saya terbiasa menyelesaikan tantangan teknis yang kompleks baik secara mandiri maupun di dalam tim.`,
 
-  avatar: "/image/profile.webp",
-  ogImage: "/image/og.png",
+  avatar: "/surya-2026-1024.webp",
+  ogImage: "/surya-2026-1024.webp",
   sameAs: [
-    "https://www.zickrian.dev",
-    "https://github.com/zickrian",
-    "https://linkedin.com/in/firdauskhotibulzickrian/",
-    "https://medium.com/@zickriann",
-    "https://huggingface.co/zickrian",
-    "https://www.pinterest.com/espejodaniel50/",
+    "https://myporto-aji.vercel.app",
+    "https://www.linkedin.com/in/suryaajiandriantoro/",
   ],
   timeZone: "Asia/Jakarta",
 
   keywords: [
-    "Firdaus Khotibul Zickrian",
-    "zickrian",
-    "Firdaus Khotibul Zickrian portfolio",
-    "zickrian portfolio",
-    "AI engineer Indonesia",
-    "machine learning engineer Indonesia",
-    "AI and machine learning",
-    "full stack developer",
-    "data products",
-    "MLOps",
-    "computer vision",
-    "AI portfolio",
-    "machine learning portfolio",
+    "Surya Aji Andriantoro",
+    "sryaaji",
+    "Surya Aji portfolio",
+    "Web Developer Indonesia",
+    "Cybersecurity Engineer Indonesia",
+    "Penetration Tester",
+    "Bug Hunter",
+    "AI Engineer Indonesia",
+    "IIB Darmajaya",
+    "Bandar Lampung",
   ],
 
-  // Full ISO 8601 datetimes: Schema.org dateCreated/dateModified expect a
-  // time component, and date-only values trip up structured-data validators.
-  dateCreated: "2023-11-01T00:00:00Z",
-  dateModified: "2026-07-20T00:00:00Z",
+  dateCreated: "2024-01-01T00:00:00Z",
+  dateModified: "2026-10-27T00:00:00Z",
 }

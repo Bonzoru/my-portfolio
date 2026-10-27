@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { type MouseEvent, useEffect, useRef, useState } from "react"
 
-import { useChat } from "@/components/chat-provider"
-import { preloadChatPanel } from "@/components/chat-widget"
 import { useNavigationSound } from "@/hooks/soundcn/use-navigation-sound"
 import { useSoundPreference } from "@/hooks/soundcn/use-sound-preference"
 import { useLanguagePreference } from "@/hooks/use-language-preference"
@@ -20,7 +18,6 @@ type IconProps = {
   active?: boolean
 }
 
-/* Refined Duotone SVG Icons with subtle translucent fills adaptive to light & dark mode + micro-animations */
 function IconHome({ className, active = false }: IconProps) {
   return (
     <svg
@@ -89,53 +86,6 @@ function IconProjects({ className, active = false }: IconProps) {
   )
 }
 
-function IconBlog({ className, active = false }: IconProps) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={cn(
-        "transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:rotate-[-2deg]",
-        className
-      )}
-    >
-      <path
-        d="M6 2h14v20H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"
-        fill="currentColor"
-        opacity={active ? 0.16 : 0.06}
-      />
-      <path
-        d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8 7h8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
-      />
-      <path
-        d="M8 11h8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        className="transition-transform duration-300 ease-out group-hover:translate-x-1"
-      />
-      <path
-        d="M8 15h5"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
-      />
-    </svg>
-  )
-}
-
 function IconGallery({ className, active = false }: IconProps) {
   return (
     <svg
@@ -191,56 +141,8 @@ function IconGallery({ className, active = false }: IconProps) {
   )
 }
 
-function IconChat({ className, active = false }: IconProps) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={cn(
-        "origin-bottom-left transition-transform duration-300 ease-out group-hover:scale-105 group-hover:-rotate-3",
-        className
-      )}
-    >
-      <path
-        d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"
-        fill="currentColor"
-        opacity={active ? 0.16 : 0.06}
-      />
-      <path
-        d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle
-        cx="8"
-        cy="12"
-        r="1"
-        fill="currentColor"
-        className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5"
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="1"
-        fill="currentColor"
-        className="transition-transform delay-75 duration-300 ease-out group-hover:-translate-y-0.5"
-      />
-      <circle
-        cx="16"
-        cy="12"
-        r="1"
-        fill="currentColor"
-        className="transition-transform delay-150 duration-300 ease-out group-hover:-translate-y-0.5"
-      />
-    </svg>
-  )
-}
-
 export function PortfolioNavbar({ className }: { className?: string }) {
   const pathname = usePathname()
-  const { setIsChatOpen } = useChat()
   const { theme, setTheme } = useTheme()
   const { enabled, setEnabled } = useSoundPreference()
   const { language, setLanguage } = useLanguagePreference()
@@ -286,11 +188,6 @@ export function PortfolioNavbar({ className }: { className?: string }) {
     }
   }
 
-  const handleOpenChat = () => {
-    playNavigation()
-    setIsChatOpen(true)
-  }
-
   const items = [
     {
       id: "home",
@@ -307,26 +204,11 @@ export function PortfolioNavbar({ className }: { className?: string }) {
       type: "link" as const,
     },
     {
-      id: "blog",
-      label: t.nav.blog,
-      href: "/blog",
-      icon: IconBlog,
-      type: "link" as const,
-    },
-    {
       id: "gallery",
       label: t.nav.gallery,
       href: "/gallery",
       icon: IconGallery,
       type: "link" as const,
-    },
-    {
-      id: "chat",
-      label: t.nav.chat,
-      icon: IconChat,
-      type: "action" as const,
-      onClick: handleOpenChat,
-      onPointerEnter: preloadChatPanel,
     },
     {
       id: "settings",
@@ -349,7 +231,7 @@ export function PortfolioNavbar({ className }: { className?: string }) {
       )}
       aria-label="Main Navigation"
     >
-      <div className="relative grid h-full w-full grid-cols-6">
+      <div className="relative grid h-full w-full grid-cols-4">
         {items.map((item) => {
           if (item.type === "link") {
             const isActive =
@@ -389,54 +271,34 @@ export function PortfolioNavbar({ className }: { className?: string }) {
             )
           }
 
-          if (item.type === "settings") {
-            return (
-              <div
-                key={item.id}
-                ref={settingsRef}
-                className="relative flex h-full w-full items-center justify-center"
-              >
-                <CircleSettingsMenu
-                  isOpen={settingsOpen}
-                  onToggle={() => {
-                    playNavigation()
-                    setSettingsOpen((open) => !open)
-                  }}
-                  label={item.label}
-                  theme={theme === "light" ? "light" : "dark"}
-                  setTheme={setTheme}
-                  language={language}
-                  setLanguage={setLanguage}
-                  soundEnabled={enabled}
-                  setSoundEnabled={setEnabled}
-                  t={t}
-                  playNavigation={playNavigation}
-                />
-              </div>
-            )
-          }
-
-          const ActionIcon = item.icon
           return (
-            <button
+            <div
               key={item.id}
-              type="button"
-              onClick={item.onClick}
-              onPointerEnter={item.onPointerEnter}
-              title={item.label}
-              aria-label={item.label}
-              className="group relative flex h-full min-w-0 cursor-pointer items-center justify-center gap-1.5 px-2 text-xs font-medium text-muted-foreground transition-colors duration-200 select-none hover:text-foreground focus-visible:z-1 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-inset sm:text-sm"
+              ref={settingsRef}
+              className="relative flex h-full w-full items-center justify-center"
             >
-              <ActionIcon className="size-4 shrink-0 transition-transform duration-300 ease-out sm:size-4.5" />
-              <span className="hidden max-w-24 overflow-hidden font-sans whitespace-nowrap transition-[opacity,max-width] duration-200 ease-out sm:block opacity-0">
-                {item.label}
-              </span>
-            </button>
+              <CircleSettingsMenu
+                isOpen={settingsOpen}
+                onToggle={() => {
+                  playNavigation()
+                  setSettingsOpen((open) => !open)
+                }}
+                label={item.label}
+                theme={theme === "light" ? "light" : "dark"}
+                setTheme={setTheme}
+                language={language}
+                setLanguage={setLanguage}
+                soundEnabled={enabled}
+                setSoundEnabled={setEnabled}
+                t={t}
+                playNavigation={playNavigation}
+              />
+            </div>
           )
         })}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 w-1/6 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="pointer-events-none absolute inset-y-0 left-0 w-1/4 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             opacity: activeItemIndex >= 0 ? 1 : 0,
             transform: `translate3d(${Math.max(activeItemIndex, 0) * 100}%, 0, 0)`,

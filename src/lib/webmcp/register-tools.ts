@@ -46,13 +46,13 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
     {
       name: "search_projects",
       description:
-        "Search Firdaus Khotibul Zickrian's portfolio projects by keyword, technology, or category.",
+        "Search Surya Aji Andriantoro's portfolio projects by keyword, technology, or category.",
       inputSchema: {
         type: "object",
         properties: {
           query: {
             type: "string",
-            description: "Keyword to search across project title, tagline, or technologies (e.g., 'machine learning', 'leadsup', 'solidity').",
+            description: "Keyword to search across project title, tagline, or technologies (e.g., 'xyro', 'telegram', 'tsunami', 'react').",
           },
           category: {
             type: "string",
@@ -122,7 +122,7 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
         properties: {
           slug: {
             type: "string",
-            description: "Project slug or ID (e.g., 'leadsup', 'naratioai', 'custora', 'base-realms', 'machine-learning-system', 'polsekrembang', 'lostandfound').",
+            description: "Project slug or ID (e.g., 'xyro', 'crypto-bot', 'tsunami-ml').",
           },
         },
         required: ["slug"],
@@ -167,17 +167,17 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
     {
       name: "get_profile_overview",
       description:
-        "Retrieve Firdaus Khotibul Zickrian's professional bio, academic record (UDINUS GPA 3.88), core skillset, awards, publications, and contact channels.",
+        "Retrieve Surya Aji Andriantoro's professional bio, academic record (IIB Darmajaya), core skillset, awards, publications, and contact channels.",
       inputSchema: {
         type: "object",
         properties: {
           includeCertifications: {
             type: "boolean",
-            description: "Whether to include the full list of 30+ professional certifications (default: true).",
+            description: "Whether to include the list of professional certifications (default: true).",
           },
           includeAwards: {
             type: "boolean",
-            description: "Whether to include honors and hackathon awards (default: true).",
+            description: "Whether to include honors and competition awards (default: true).",
           },
         },
         additionalProperties: false,
@@ -199,18 +199,14 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
           phone: USER.phone,
           website: baseUrl,
           socialProfiles: {
-            github: "https://github.com/zickrian",
-            linkedin: "https://linkedin.com/in/firdauskhotibulzickrian/",
-            huggingface: "https://huggingface.co/zickrian",
-            medium: "https://medium.com/@zickriann",
+            linkedin: "https://www.linkedin.com/in/suryaajiandriantoro/",
           },
           education: {
-            institution: "Universitas Dian Nuswantoro (UDINUS)",
-            degree: "Bachelor of Computer Science (S.Kom)",
-            period: "2023 – Present (Expected Graduation: October 2027)",
-            gpa: "3.88 / 4.00",
-            creditsCompleted: "129 of 144 credits",
-            focusAreas: ["Machine Learning", "Data Analytics", "Predictive Analytics", "AI Systems"],
+            institution: "Institute of Informatics and Business (IIB) Darmajaya",
+            degree: "Bachelor of Informatics Engineering (S.Kom)",
+            period: "2022 – 2026",
+            honors: "Outstanding Student of the Year 2025/2026",
+            focusAreas: ["Cybersecurity", "Web Development", "AI Engineering", "Networking"],
           },
           bio: USER.bio,
           techStackSummary: techSummary,
@@ -245,7 +241,7 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
     {
       name: "get_experiences",
       description:
-        "Retrieve chronological career history, internships (e.g. PT Custompedia Creative Group), leadership roles, and laboratory assistant positions.",
+        "Retrieve chronological career history, internships (e.g. Bank BJB Operations Bureau), freelance offensive security, and project development roles.",
       inputSchema: {
         type: "object",
         properties: {
@@ -283,7 +279,7 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
     {
       name: "send_contact_message",
       description:
-        "Send an inquiry, collaboration proposal, or message directly to Firdaus Khotibul Zickrian via the verified portfolio mailer.",
+        "Send an inquiry, collaboration proposal, or message directly to Surya Aji Andriantoro via the verified portfolio mailer.",
       inputSchema: {
         type: "object",
         properties: {
@@ -331,7 +327,7 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
 
           return {
             ok: true,
-            message: "Your message has been successfully sent to Firdaus Khotibul Zickrian.",
+            message: "Your message has been successfully sent to Surya Aji Andriantoro.",
           }
         } catch (err: unknown) {
           const errMsg = err instanceof Error ? err.message : "Network error while sending contact message."
@@ -345,17 +341,12 @@ export function getPortfolioWebMCPTools(): WebMCPToolDefinition[] {
   ]
 }
 
-/**
- * Registers WebMCP tools with the browser agent context if available.
- * Implements progressive enhancement with zero overhead on non-WebMCP browsers.
- */
 export async function registerWebMCPTools(): Promise<void> {
   if (typeof window === "undefined") return
 
   const tools = getPortfolioWebMCPTools()
 
   try {
-    // Check document.modelContext or navigator.modelContext
     const docModelContext = (document as unknown as { modelContext?: { registerTool?: (t: WebMCPToolDefinition) => Promise<void>; provideContext?: (c: { tools: WebMCPToolDefinition[] }) => Promise<void> } }).modelContext
     const navModelContext = (navigator as unknown as { modelContext?: { registerTool?: (t: WebMCPToolDefinition) => Promise<void>; provideContext?: (c: { tools: WebMCPToolDefinition[] }) => Promise<void> } }).modelContext
 
@@ -371,10 +362,8 @@ export async function registerWebMCPTools(): Promise<void> {
       }
     }
 
-    // Expose window.__webmcp_tools__ for testing interfaces / agent inspectors
     ;(window as unknown as { __webmcp_tools__?: WebMCPToolDefinition[] }).__webmcp_tools__ = tools
   } catch (err) {
-    // Non-blocking: fail silently if WebMCP experimental API is in a transition state
     console.debug("[WebMCP] Registration note:", err)
   }
 }

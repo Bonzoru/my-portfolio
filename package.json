@@ -1,12 +1,12 @@
 {
-  "name": "firdaus-zickrian-portfolio",
-  "version": "0.1.0",
-  "description": "My personal portfolio for AI, machine learning, and full-stack development projects.",
+  "name": "surya-aji-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio of Surya Aji Andriantoro — Web Developer, Cybersecurity & AI Engineer.",
   "license": "MIT",
   "author": {
-    "name": "Firdaus Khotibul Zickrian",
-    "email": "firdauskhotibulzickrian@gmail.com",
-    "url": "https://github.com/zickrian"
+    "name": "Surya Aji Andriantoro",
+    "email": "suryaaji237@gmail.com",
+    "url": "https://myporto-aji.vercel.app"
   },
   "scripts": {
     "dev": "next dev",

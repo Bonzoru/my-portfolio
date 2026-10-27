@@ -2,20 +2,11 @@ import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 
 import { SectionSeparator } from "@/components/section-separator"
+import { DigitalBadges } from "@/features/portfolio/components/badges"
 import { Experiences } from "@/features/portfolio/components/experiences"
 import { Projects } from "@/features/portfolio/components/projects"
 import { TechStack } from "@/features/portfolio/components/tech-stack"
 import { USER } from "@/features/portfolio/data/user"
-
-// Below-fold components dynamically imported with SSR enabled
-// to keep full SEO while code-splitting the initial JS payload
-const GitHubContributions = dynamic(
-  () =>
-    import("@/features/portfolio/components/github-contributions").then(
-      (m) => m.GitHubContributions
-    ),
-  { ssr: true }
-)
 
 const Awards = dynamic(
   () =>
@@ -67,13 +58,13 @@ export default function Page() {
       <TechStack />
       <SectionSeparator />
 
-      <GitHubContributions />
-      <SectionSeparator />
-
       <Awards />
       <SectionSeparator />
 
       <Publications />
+      <SectionSeparator />
+
+      <DigitalBadges />
       <SectionSeparator />
 
       <Certifications />

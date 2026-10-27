@@ -3,7 +3,6 @@ import { FooterIndexList, FooterLabel } from "@/components/footer-chrome"
 import { FooterClock } from "@/components/footer-clock"
 import { FooterContactList } from "@/components/footer-contact-list"
 import { MAIN_NAV } from "@/config/site"
-import { getGitHubSocialCard } from "@/features/portfolio/data/github-social"
 import { USER } from "@/features/portfolio/data/user"
 import { brailleText } from "@/lib/braille"
 
@@ -27,10 +26,6 @@ export async function SiteFooter() {
   // is read here rather than in a client component: a year resolved in the
   // browser would not match the prerendered HTML.
   const year = new Date().getFullYear()
-
-  // Both calls behind it are cached for a day and swallow their own failures,
-  // so a slow or rate-limited GitHub degrades the card, never the page.
-  const github = await getGitHubSocialCard()
 
   return (
     <footer className="relative z-1 max-w-screen overflow-x-hidden sm:px-2">
@@ -75,7 +70,7 @@ export async function SiteFooter() {
           {/* The list itself is a client component: it owns the hover cards,
               so no element crosses into a Radix `Slot` from the server. */}
           <FooterTree label={<FooterLabel k="contact" />}>
-            <FooterContactList github={github} />
+            <FooterContactList github={null} />
           </FooterTree>
 
           <FooterTree label={<FooterLabel k="index" />}>
