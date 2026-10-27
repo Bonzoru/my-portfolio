@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     image: "/xyro-1-1024.webp",
     gallery: ["/xyro-1-1024.webp", "/xyro-2-1024.webp"],
     period: { start: "2025", end: "Present" },
-    link: "https://myporto-aji.vercel.app/#work",
+    link: "https://sryaaji.vercel.app/#work",
     links: {
       live: "",
       repo: "",
@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
     image: "/telegram-bot-1-800.webp",
     gallery: ["/telegram-bot-1-800.webp", "/telegram-bot-2-774.webp"],
     period: { start: "2024", end: "Present" },
-    link: "https://myporto-aji.vercel.app/#work",
+    link: "https://sryaaji.vercel.app/#work",
     links: {
       live: "",
       repo: "",
@@ -186,7 +186,7 @@ export const PROJECTS: Project[] = [
     image: "/research-1-672.webp",
     gallery: ["/research-1-672.webp", "/research-2-500.webp"],
     period: { start: "2024" },
-    link: "https://myporto-aji.vercel.app/#work",
+    link: "https://sryaaji.vercel.app/#work",
     links: {
       live: "",
       repo: "",

@@ -28,7 +28,7 @@ export const USER: User = {
   address: "Bandar Lampung, Indonesia",
   email: "c3VyeWFhamkyMzdAZ21haWwuY29t", // base64 of suryaaji237@gmail.com
   phone: "",
-  website: "https://myporto-aji.vercel.app",
+  website: "https://sryaaji.vercel.app",
 
   jobTitle: "Web Developer, Cybersecurity & AI Engineer",
   seoTitle:
@@ -51,7 +51,7 @@ export const USER: User = {
   avatar: "/surya-2026-1024.webp",
   ogImage: "/surya-2026-1024.webp",
   sameAs: [
-    "https://myporto-aji.vercel.app",
+    "https://sryaaji.vercel.app",
     "https://www.linkedin.com/in/suryaajiandriantoro/",
   ],
   timeZone: "Asia/Jakarta",
